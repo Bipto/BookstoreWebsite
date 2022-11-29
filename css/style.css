@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Special+Elite&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Changa:wght@300&display=swap");
+body {
+  background-color: #4B4F67;
+  padding-top: 0.5em;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+  margin: 0;
+}
+
+.topbar {
+  background-color: #383C54;
+  padding-top: 0.01em;
+  padding-bottom: 0.01em;
+  width: 100%;
+}
+
+.title {
+  padding-left: 75px;
+}
+
+.navbar {
+  background-color: #3D415C;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 0.35em;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+}
+
+.navbar > nav {
+  transition: 350ms;
+}
+
+.navbar > nav:hover {
+  background-color: #646A96;
+}/*# sourceMappingURL=style.css.map */

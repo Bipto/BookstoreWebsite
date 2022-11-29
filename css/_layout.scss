@@ -1,0 +1,54 @@
+@import "variables";
+
+body{
+    background-color: $backgroundColor;
+    padding-top: 0.5em;
+    padding-left: 7.5em;
+    padding-right: 7.5em;
+    margin: 0;
+}
+
+// @media only screen and (max-width: 600px){
+//     .topbar{
+//         background-color: blue;
+//         height: 100px;
+//         width: 100%;
+//     }
+// }
+
+// @media only screen and (min-width: 600px){
+//     .topbar{
+//         background-color: yellow;
+//         height: 100px;
+//         width: 100%;
+//     }
+// }
+
+.topbar{
+    background-color: $titlebarColor;
+    padding-top: 0.01em;
+    padding-bottom: 0.01em;
+    width: 100%;
+}
+
+.title{
+    padding-left: 75px;
+}
+
+.navbar{
+    background-color: $navbarColor;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 0.35em;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    text-align: center;
+}
+
+.navbar > nav{
+    transition: 350ms;
+}
+
+.navbar > nav:hover{
+    background-color: $navbarHoveredColor;
+}

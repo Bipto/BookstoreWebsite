@@ -1,3 +1,4 @@
+buttons
  <div class="grid">
         <!-- <button type="button" onclick="myFunction()">Click me</button>
         <button type="button" onclick="myFunction()">Click me</button>
@@ -14,4 +15,34 @@
         <img src="img/harry_potter_goblet_of_fire.png" class="grid-item">
         <img src="img/harry_potter_order_of_the_phoenix.png" class="grid-item">
 
+    </div>
+
+book grid
+<div class="grid">
+        <!-- <button type="button" onclick="myFunction()">Click me</button>
+        <button type="button" onclick="myFunction()">Click me</button>
+        <div class="myDiv">Hello</div> -->
+
+        <img src="img/the_hobbit.jpg" class="grid-item">
+        <img src="img/fellowship_of_the_ring.png" class="grid-item">
+        <img src="img/the_two_towers.png" class="grid-item">
+        <img src="img/the_return_of_the_king.png" class="grid-item">
+        <img src="img/the_silmarillion.png" class="grid-item">
+        <img src="img/unfinished_tales_of_numenor_middle_earth.jpg" class="grid-item">
+        <img src="img/fall_of_numenor.jpg" class="grid-item">
+
+        <img src="img/harry_potter_philosophers_stone.png" class="grid-item">
+        <img src="img/harry_potter_chamber_of_secrets.png" class="grid-item">
+        <img src="img/harry_potter_prisoner_of_azkaban.png" class="grid-item">
+        <img src="img/harry_potter_goblet_of_fire.png" class="grid-item">
+        <img src="img/harry_potter_order_of_the_phoenix.png" class="grid-item">
+        <img src="img/harry_potter_half_blood_prince.png" class="grid-item">
+        <img src="img/harry_potter_and_the_deathly_hallows.jpg" class="grid-item">
+
+        <img src="img/the_hunger_games.jpg" class="grid-item">
+        <img src="img/the_hunger_games_catching_fire.jpg" class="grid-item">
+        <img src="img/the_hunger_games_mockingjay.jpg" class="grid-item">
+        <img src="img/ballad_of_songbirds_and_snakes.jpg" class="grid-item">
+
+        <div class="footer"></div>
     </div>

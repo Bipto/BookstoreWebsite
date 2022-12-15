@@ -23,8 +23,24 @@
 .grid-item
 {
     width: 15em;
+    height: 15em;
     vertical-align: middle;
     margin: 5px;
+    object-fit: contain;
+}
+
+.book-title
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.book
+{
+    height: 22em;
+    width: 15em;
+    text-align: center;
 }
 
 .footer

@@ -26,7 +26,17 @@
             }
         }
 
-        createHeader();
+        function createSearchbar(){
+            $html = "
+                <form>
+                Name: <input type='text' id='searchtext'>
+                <input type='submit' value='Submit' onclick='myFunction()'>
+                </form>";
+            echo $html;
+        }
+
+        createHeader();  
+        createSearchbar();
 
         $book1 = new Book();
         $book1->BookID = 0;
@@ -192,10 +202,10 @@
         array_push($books, $book17);
         array_push($books, $book18);
 
-        echo "<div class='grid'>";
+        echo "<div id='grid'>";
         createBookGrid($books);
         echo "</div>";
-
     ?>   
+
 </body>
 </html>

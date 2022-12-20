@@ -5,6 +5,7 @@
     height: 150px;
     width: 90%;
     margin-left: 5%;
+    margin-right: 5%;
     margin-top: 10px;
     margin-bottom: 100px;
     display: flex;
@@ -34,6 +35,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    font-size: 1.4em;
 }
 
 .book
@@ -48,4 +50,15 @@
     background-color: $titlebarColor;
     width: 100%;
     height: 50px;
+}
+
+.searchbar
+{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#searchtext
+{
+    width: 15em;
 }

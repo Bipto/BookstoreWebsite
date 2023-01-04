@@ -29,10 +29,15 @@ body{
     padding-top: 10px;
     padding-bottom: 10px;
     width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
-.title{
-    padding-left: 75px;
+#title
+{
+    padding-left: 2em;
 }
 
 .navbar{

@@ -11,15 +11,15 @@
 <body>
     <?php
         require_once "php/layout.php";
-        require_once "php/book.php";
         require_once "php/display_books.php";
+        require_once "php/book.php";
     
         function createSearchbar(){
             $html = "
                 <div class='searchbar'>
                     <form class=>
-                        Name: <input type='text' id='searchtext'>
-                        <input type='submit' value='Search' onclick='myFunction()'>
+                        <input type='text' id='searchtext'>
+                        <input type='submit' id='submitButton' value='Search' onClick='searchBooks()'>
                     </form>
                 </div>";
             echo $html;

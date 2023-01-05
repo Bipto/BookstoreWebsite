@@ -7,6 +7,7 @@ class Book{
     public $Genre;
     public $Price;
     public $ImagePath;
+    public $Description;
 }
 
 ?>

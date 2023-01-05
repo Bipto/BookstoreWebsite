@@ -1,13 +1,15 @@
-function myFunction(){
+
+function searchBooks(){
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
         //document.getElementById("grid").outerHTML= this.responseText;
         document.body.parentNode.innerHTML = this.responseText;
+
     }
     
     const searchText = document.getElementById("searchtext").value;
-    xhttp.open("GET", "index.php?name=" + searchText, false);
-    xhttp.send();
+    const filePath = 'index.php?name=' + searchText;
 
-    //alert(searchText);
+    xhttp.open("GET", filePath, false);
+    xhttp.send();
 }

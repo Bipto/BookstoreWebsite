@@ -21,7 +21,7 @@
     flex-shrink: 0;
 }
 
-.grid-item
+.book-image
 {
     width: 15em;
     height: 15em;
@@ -56,9 +56,28 @@
 {
     text-align: center;
     margin-top: 10px;
+    font-size: 1.2em;
 }
 
 #searchtext
 {
     width: 15em;
+    font-size: 1.2em;
+}
+
+#submitButton
+{
+    font-size: 1.2em;
+}
+
+.book
+{
+    padding-top: 2em;
+    transition: 350ms;
+    user-select: none;
+}
+
+.book:hover
+{
+    background-color: $navbarHoveredColor;
 }

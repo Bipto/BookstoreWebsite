@@ -10,7 +10,10 @@
 <body>
     <?php
         require_once "php/layout.php";
+        require_once "php/customer.php";
+
         createHeader();
+        login();
     ?>
 </body>
 </html>

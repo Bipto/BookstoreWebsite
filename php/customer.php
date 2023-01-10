@@ -10,6 +10,9 @@ function login()
 {
     $customer = new Customer();
     $customer->CustomerID = 0;
+    $customer->FirstName = "Adam";
+    $customer->Surname = "Beardow";
+
     $_SESSION["Customer"] = $customer;
 }
 

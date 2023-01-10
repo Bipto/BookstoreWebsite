@@ -5,6 +5,7 @@
         require_once "customer.php";
 
         session_start();
+        session_unset();
 
         $html = 
         '<div class="topbar">

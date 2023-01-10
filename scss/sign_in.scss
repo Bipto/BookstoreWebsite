@@ -1,1 +1,41 @@
 @import "layout";
+
+.title
+{
+    text-align: center;
+    width: 100%;
+}
+
+.login
+{
+    font-size: 1.2em;
+    width: 30%;
+    margin-left: 35%;
+}
+
+#email
+{
+    width: 100%;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+#password
+{
+    width: 100%;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+#submitButton
+{
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-left: auto;
+    display: grid;
+}
+
+#createAccount
+{
+    text-align: center;
+}

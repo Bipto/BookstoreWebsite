@@ -1,5 +1,6 @@
 
-function searchBooks(){
+function searchBooks()
+{
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
         //document.getElementById("grid").outerHTML= this.responseText;
@@ -12,4 +13,9 @@ function searchBooks(){
 
     xhttp.open("GET", filePath, false);
     xhttp.send();
+}
+
+function signIn()
+{
+    alert("Sign In");
 }

@@ -9,7 +9,4 @@
     echo $username;
     echo "<br>";
     echo $password;
-
-    $conn = openConnection();
-    createDatabase($conn);
 ?>

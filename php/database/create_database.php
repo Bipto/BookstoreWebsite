@@ -23,12 +23,12 @@
     function createBooksTable($conn){
         $create_books_sql = "CREATE TABLE Bookstore.Books(
             BookID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-            Title VARCHAR(50),
-            Author VARCHAR(50),
-            BookDescription TEXT,
-            Genre VARCHAR(30),
-            Price DECIMAL(6,2),
-            ImagePath VARCHAR(150)
+            Title VARCHAR(50) NOT NULL,
+            Author VARCHAR(50) NOT NULL,
+            BookDescription TEXT NOT NULL,
+            Genre VARCHAR(30) NOT NULL,
+            Price DECIMAL(6,2) NOT NULL,
+            ImagePath VARCHAR(150) 
             )";
     
         if ($conn->query($create_books_sql) === TRUE){
@@ -44,16 +44,17 @@
     function createAdminTable($conn){
         $create_administrators_sql = "CREATE TABLE Bookstore.Administrators(
             Email VARCHAR(50) PRIMARY KEY NOT NULL,
-            Title VARCHAR(10),      
-            FirstName VARCHAR(30),
-            Surname VARCHAR(50),
-            DateOfBirth DATETIME,
-            HouseNumber VARCHAR(30),
-            Street VARCHAR(50),
-            Town VARCHAR(50),
-            County VARCHAR(50),
-            Country VARCHAR(50),
-            PostCode VARCHAR(7)
+            Title VARCHAR(10) NOT NULL,      
+            FirstName VARCHAR(30) NOT NULL,
+            Surname VARCHAR(50) NOT NULL,
+            DateOfBirth DATETIME NOT NULL,
+            HouseNumber VARCHAR(30)NOT NULL,
+            Street VARCHAR(50) NOT NULL,
+            Town VARCHAR(50) NOT NULL,
+            County VARCHAR(50) NOT NULL,
+            Country VARCHAR(50) NOT NULL,
+            PostCode VARCHAR(7) NOT NULL,
+            Password VARCHAR(255) NOT NULL
             )";
     
         if ($conn->query($create_administrators_sql) === TRUE){
@@ -69,16 +70,17 @@
     function createCustomerTable($conn){
         $create_customers_sql = "CREATE TABLE Bookstore.Customers(
             Email VARCHAR(50) PRIMARY KEY NOT NULL,
-            Title VARCHAR(10),
-            FirstName VARCHAR(30),
-            Surname VARCHAR(50),
-            DateOfBirth DATETIME,
-            HouseNumber VARCHAR(30),
-            Street VARCHAR(50),
-            Town VARCHAR(50),
-            County VARCHAR(50),
-            Country VARCHAR(50),
-            PostCode VARCHAR(7)
+            Title VARCHAR(10) NOT NULL,
+            FirstName VARCHAR(30) NOT NULL,
+            Surname VARCHAR(50) NOT NULL,
+            DateOfBirth DATETIME NOT NULL,
+            HouseNumber VARCHAR(30) NOT NULL,
+            Street VARCHAR(50) NOT NULL,
+            Town VARCHAR(50) NOT NULL,
+            County VARCHAR(50) NOT NULL,
+            Country VARCHAR(50) NOT NULL,
+            PostCode VARCHAR(7) NOT NULL,
+            Password VARCHAR(255) NOT NULL
             )";
 
         if ($conn->query($create_customers_sql) === TRUE){
@@ -96,8 +98,8 @@
             OrderID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
             Email VARCHAR(50) NOT  NULL,
             FOREIGN KEY (Email) REFERENCES Bookstore.Customers(Email),
-            Total DECIMAL(6,2),
-            Date DATETIME
+            Total DECIMAL(6,2) NOT NULL,
+            Date DATETIME NOT NULL
             )";
 
         if ($conn->query($create_orders_sql) === TRUE){
@@ -115,7 +117,7 @@
             BookSaleID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
             BookID INT UNSIGNED NOT NULL,
             FOREIGN KEY (BookID) REFERENCES Bookstore.Books(BookID),
-            OrderID INT UNSIGNED,
+            OrderID INT UNSIGNED NOT NULL,
             FOREIGN KEY (OrderID) REFERENCES Bookstore.Orders(OrderID)
             )";
 

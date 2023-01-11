@@ -11,6 +11,17 @@
     <?php
         require_once "php/layout.php";
         createHeader();
+
+        if (isset($_SESSION["Customer"]))
+        {
+            $customer = $_SESSION["Customer"];
+            echo $customer->Email;
+        }
     ?>
+
+    <a href="sign_out.php">
+        <input type="submit" value="Sign Out" class="signOutButton">
+    </a>
+
 </body>
 </html>

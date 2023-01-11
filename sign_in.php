@@ -13,7 +13,6 @@
         require_once "php/customer.php";
 
         createHeader();
-        login();
     ?>
 
     <div class='title'>
@@ -28,7 +27,7 @@
         <input type="submit" id="submitButton" value="Sign In" onclick="signIn()">
     </form>
 
-    <a href="create_account.php">
+    <a href="new_customer.php">
         <p id="createAccount">
             Create a new account?
         </p>

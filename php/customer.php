@@ -1,15 +1,23 @@
 <?php
 
 class Customer{
-    public $CustomerID;
+    public $Email;
+    public $Title;
     public $FirstName;
     public $Surname;
+    public $DateOfBirth;
+    public $HouseNumber;
+    public $Street;
+    public $Town;
+    public $County;
+    public $Country;
+    public $PostCode;
+    public $Password;
 }
 
 function login()
 {
     $customer = new Customer();
-    $customer->CustomerID = 0;
     $customer->FirstName = "Adam";
     $customer->Surname = "Beardow";
 

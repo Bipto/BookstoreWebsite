@@ -7,7 +7,7 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -65,9 +65,10 @@
     font-size: 1.2em;
 }
 
-#submitButton
+#searchButton
 {
     font-size: 1.2em;
+    margin-top: 5px;
 }
 
 .book

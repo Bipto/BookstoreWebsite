@@ -6,11 +6,20 @@
 
         session_start();
 
+        echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
+        echo '<script type="text/javascript" src="js/main.js"></script>';
+
         $html = 
-        '<div class="topbar">
-            <h1 id="title">Selby Bookstore</h1>
+        '
+        <div class="dropdown">
+            <div class="topbar">
+                <h1 id="title">Selby Bookstore</h1>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="toggleDropdownMenu()()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
-        <div class="navbar">
+        <div class="navbar" id="navbar">
             <nav>
                 <a href="index.php"><h1>Home</h1></a>
             </nav>

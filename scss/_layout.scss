@@ -1,64 +1,104 @@
 @import "variables";
 
-body{
-    background-color: $backgroundColor;
-    padding-top: 0.5em;
-    padding-left: 7.5em;
-    padding-right: 7.5em;
-    margin: 0;
-}
+ @media only screen and (max-width: 600px)
+ {
+    body
+    {
+        background-color: $backgroundColor;
+        margin: 0;
+    }
 
-/*  @media only screen and (max-width: 600px){
-     .topbar{
-         background-color: blue;
-         height: 100px;
+    .topbar
+    {
+        background-color: $titlebarColor;
+        padding-top: 10px;
+        width: 90%;
+        text-align: center;
+    }
+
+    .navbar
+    {
         width: 100%;
-     }
+        margin-left: 5px;
+        margin-right: 5px;
+        align-items: center;
+        display: none;
+    }
+
+    .dropdown
+    {
+        display: grid;
+        grid-template-columns: 85% 15%;
+        background-color: $titlebarColor;
+        align-items: center;
+    }
+    
+    .icon
+    {
+        display: block;
+        font-size: 150%;
+    }
  }
 
- @media only screen and (min-width: 600px){
-     .topbar{
-         background-color: yellow;
-         height: 100px;
-         width: 100%;
-     }
- } */
+ @media only screen and (min-width: 600px)
+ {
+    body
+    {
+        background-color: $backgroundColor;
+        padding-top: 0.5em;
+        padding-left: 7.5em;
+        padding-right: 7.5em;
+        margin: 0;
+    }
 
-.topbar{
-    background-color: $titlebarColor;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
+    .topbar
+    {
+        background-color: $titlebarColor;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    
+    #title
+    {
+        padding-left: 2em;
+    }
+    
+    .navbar
+    {
+        background-color: $navbarColor;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 0.35em;
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        text-align: center;
+    }
 
-#title
+    .icon
+    {
+        display: none;
+    }
+ }
+
+
+
+.navbar > nav
 {
-    padding-left: 2em;
-}
-
-.navbar{
-    background-color: $navbarColor;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 0.35em;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    text-align: center;
-}
-
-.navbar > nav{
     transition: 350ms;
 }
 
-.navbar > nav:hover{
+.navbar > nav:hover
+{
     background-color: $navbarHoveredColor;
 }
 
-a{
+a
+{
     text-decoration: none;
     color: black;
 }

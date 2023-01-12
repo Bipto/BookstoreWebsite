@@ -15,11 +15,6 @@ function searchBooks()
     xhttp.send();
 }
 
-function signIn()
-{
-    alert("Sign In");
-}
-
 function toggleDropdownMenu()
 {
     var x = document.getElementById("navbar");

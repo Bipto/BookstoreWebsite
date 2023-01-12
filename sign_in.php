@@ -24,7 +24,7 @@
         <input type="text" id="email" name="email"><br>
         <label for="password" id="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
-        <input type="submit" id="submitButton" value="Sign In" onclick="signIn()">
+        <input type="submit" id="submitButton" value="Sign In"">
     </form>
 
     <a href="new_customer.php">

@@ -15,7 +15,7 @@
         if (isset($_SESSION["Customer"]))
         {
             $customer = $_SESSION["Customer"];
-            echo "<div class='content'>" .$customer->Email. "</div>";
+            echo "<div class='content'><h4>" .$customer->Email. "</h4></div>";
         }
 
         $html = "

@@ -15,13 +15,18 @@
         if (isset($_SESSION["Customer"]))
         {
             $customer = $_SESSION["Customer"];
-            echo $customer->Email;
+            echo "<div class='content'>" .$customer->Email. "</div>";
         }
+
+        $html = "
+            <a href='sign_out.php' class='content'>
+                <button class='content'>Sign Out</button>
+            </a>";
+
+        echo $html;
     ?>
 
-    <a href="sign_out.php">
-        <input type="submit" value="Sign Out" class="signOutButton">
-    </a>
+
 
 </body>
 </html>

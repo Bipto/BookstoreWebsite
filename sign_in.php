@@ -19,7 +19,7 @@
         <h1>Sign In</h1>
     </div>
 
-    <form class="login" action="php/handle_sign_in.php" method="post">
+    <form class="login" action="handle_log_in.php" method="post">
         <label for="email" id="email">Email:</label><br>
         <input type="text" id="email" name="email"><br>
         <label for="password" id="password">Password:</label><br>

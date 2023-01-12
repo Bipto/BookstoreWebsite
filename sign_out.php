@@ -10,12 +10,16 @@
 <body>
     <?php
 
+
         require_once "php/layout.php";
         createHeader();
 
+        header('Location: index.php');
         session_unset();
-
-        echo "Signed out successfully";
+        exit();
     ?>
+
+
+
 </body>
 </html>

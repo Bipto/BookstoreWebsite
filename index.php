@@ -11,7 +11,8 @@
     <?php
         require_once "php/layout.php";
         require_once "php/display_books.php";
-        require_once "php/book.php";
+        require_once "php/database/database_connections.php";
+        require_once "php/database/book.php";
     
         function createSearchbar(){
             $html = "
@@ -33,7 +34,9 @@
             $searchText = $_REQUEST["name"];
         }
      
-        $books = createBooks("");
+        /* $books = createBooks(""); */
+
+        $books = getBooks();
 
         echo "<div id='grid'>";
         createBookGrid($books, $searchText);

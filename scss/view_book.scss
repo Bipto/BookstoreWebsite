@@ -10,10 +10,28 @@
     margin-right: 17%;
 }
 
-.book-image
+.description
 {
-    width: 18vw;
-    vertical-align: middle;
-    margin: 5px;
-    object-fit: fill;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 1000px)
+{
+    .book-image
+    {
+        width: 75%;
+        vertical-align: middle;
+        object-fit: fill;
+    }
+}
+
+@media only screen and (min-width: 1000px)
+{
+    .book-image
+    {
+        width: 18vw;
+        vertical-align: middle;
+        margin: 5px;
+        object-fit: fill;
+    }
 }

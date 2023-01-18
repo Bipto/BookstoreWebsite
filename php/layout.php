@@ -2,7 +2,7 @@
     
     function createHeader(){
 
-        require_once "customer.php";
+        require_once "database/customer.php";
 
         session_start();
 

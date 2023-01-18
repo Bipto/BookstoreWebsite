@@ -24,7 +24,7 @@
             <h2>" .$selectedBook->Title. " - " .$selectedBook->Author.  "</h2>
             <h3>" .$selectedBook->Genre. "</h3>
             <h3> £" .$selectedBook->Price. "</h3>
-            <div> Description: " .$selectedBook->Description. "</div>
+            <div class='description'> Description: " .$selectedBook->Description. "</div>
         </div>
         ";
 

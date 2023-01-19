@@ -131,6 +131,25 @@
         echo "<br>";
     }
 
+    function createCartTable($conn){
+        $create_cart_sql = "CREATE TABLE Bookstore.Carts(
+            CartID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+            Email VARCHAR(50) NOT NULL,
+            FOREIGN KEY (Email) REFERENCES Bookstore.Customers(Email),
+            BookID INT(6) UNSIGNED NOT NULL,
+            FOREIGN KEY(BookID) REFERENCES Bookstore.Books(BookID)
+            )";
+
+            if ($conn->query($create_cart_sql) === TRUE){
+                echo "Table Carts create successfully";
+            }
+            else{
+                echo "Error creating table (Carts): " .$conn->error;
+            }
+
+            echo "<br>";
+    }
+
     function createBooks($conn){
         $book1 = new Book();
         $book1->BookID = 0;
@@ -340,6 +359,7 @@
     createCustomerTable($conn);
     createOrdersTable($conn);
     createBookSalesTable($conn);
+    createCartTable($conn);
 
     createBooks($conn);
 

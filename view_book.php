@@ -10,27 +10,42 @@
 <body>
     <?php
         require_once "php/layout.php";
-        require_once "php/display_books.php";
+        require_once "php/database/database_connections.php";
+        require_once "php/database/book.php";
 
-        $books = createBooks();
         createHeader();
-
         $id = $_GET["id"];
-        $selectedBook = $books[$id];
+        $selectedBook = getBookById($id);
 
-        $html = "
+        $bookInfo = "
         <div class='book'>
             <img src=" .$selectedBook->ImagePath. " class='book-image' >
             <h2>" .$selectedBook->Title. " - " .$selectedBook->Author.  "</h2>
             <h3>" .$selectedBook->Genre. "</h3>
             <h3> £" .$selectedBook->Price. "</h3>
-            <div class='description'> Description: " .$selectedBook->Description. "</div>
+            <div class='description'>" .$selectedBook->Description. "</div>
         </div>
         ";
 
-        echo $html;
+        echo $bookInfo;
 
+        if (isset($_SESSION["Customer"]))
+        {
+            echo "<a href='cart.php?id=".$selectedBook->BookID."'>
+                <button type='button' class='button'>Add to cart</button>
+            </a>";
+        }
+        else
+        {
+            echo "<a href='sign_in.php'>
+                <button type='button' class='button'>Add to cart</button>
+            </a>";
+        }
     ?>
+
+    <!-- <a href="cart.php?id=".$book->BookID."">
+        <button type="button" class="button">Add to cart</button>
+    </a> -->
 
 </body>
 </html>

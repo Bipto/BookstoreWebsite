@@ -1,6 +1,7 @@
 <?php
 
-class Book{
+class Book
+{
     public $BookID;
     public $Title;
     public $Author;
@@ -8,6 +9,12 @@ class Book{
     public $Genre;
     public $Price;
     public $ImagePath;
+}
+
+class CartBook
+{
+    public $CartID;
+    public $Book;
 }
 
 ?>

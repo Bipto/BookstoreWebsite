@@ -10,7 +10,6 @@
 <body>
     <?php
         require_once "php/layout.php";
-        require_once "php/display_books.php";
         require_once "php/database/database_connections.php";
         require_once "php/database/book.php";
     
@@ -25,6 +24,29 @@
             echo $html;
         }
 
+        function createBookGrid($books, $searchText){
+
+            foreach ($books as $book){
+    
+                $title = strtolower($book->Title);
+                $searchText = strtolower($searchText);
+    
+                if (str_contains($title, $searchText))
+                {
+                    $html = "
+                    <a href='view_book.php?id=" .$book->BookID."'>
+                        <div class='book'>
+                            <img src=" .$book->ImagePath. " class='book-image'>
+                            <h1 class='book-title'>" .$book->Title. "</h1>
+                        </div>
+                    </a>
+                    ";
+    
+                    echo $html;
+                }
+            }
+        }
+
         createHeader();  
         createSearchbar();
         
@@ -33,8 +55,6 @@
         {
             $searchText = $_REQUEST["name"];
         }
-     
-        /* $books = createBooks(""); */
 
         $books = getBooks();
 

@@ -27,3 +27,16 @@ function toggleDropdownMenu()
         x.style.display = "block";
     }
 }
+
+function removeBookFromCart(id)
+{
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+        document.body.innerHTML = this.responseText;
+    }
+
+    const filepath = 'remove_book_from_cart.php?id=' + id;
+    
+    xhttp.open("GET", filepath, true);
+    xhttp.send();
+}

@@ -18,18 +18,34 @@
             <a href="javascript:void(0);" class="icon" onclick="toggleDropdownMenu()()">
                 <i class="fa fa-bars"></i>
             </a>
-        </div>
-        <div class="navbar" id="navbar">
+        </div>';
+        echo $html;
+
+        echo '
+            <div class="navbar" id="navbar">
             <nav>
                 <a href="index.php"><h1>Home</h1></a>
-            </nav>
-            <nav>
-                <a href="cart.php"><h1>Cart</h1></a>
-            </nav>
-            <nav>
-                <a href="about.php"><h1>About</h1></a>
             </nav>';
-        echo $html;
+
+        if (!isset($_SESSION["Customer"]))
+        {
+            echo '
+                <nav>
+                    <a href="sign_in.php"><h1>Cart</h1></a>
+                </nav>';
+        }
+        else
+        {
+            echo '
+                <nav>
+                    <a href="cart.php"><h1>Cart</h1></a>
+                </nav>';
+        }
+
+        echo '
+                <nav>
+                    <a href="about.php"><h1>About</h1></a>
+                </nav>';
 
         if (!isset($_SESSION["Customer"]))
         {

@@ -49,7 +49,6 @@
 
                 $_SESSION["Customer"] = $customer;
 
-
                 header('Location: account.php');
                 exit();
             }

@@ -314,7 +314,7 @@
         $book15->BookID = 14;
         $book15->Title = "The Hunger Games";
         $book15->Author = "Suzanne Collins";
-        $book15->Genre = "Fantasy";
+        $book15->Genre = "Young Adult";
         $book15->Price = 7.99;
         $book15->ImagePath = "img/the_hunger_games.jpg";
         $book15->Description = "The Hunger Games is a 2008 dystopian novel by the American writer Suzanne Collins. It is written in the perspective of 16-year-old Katniss Everdeen, who lives in the future, post-apocalyptic nation of Panem in North America. The Capitol, a highly advanced metropolis, exercises political control over the rest of the nation. The Hunger Games is an annual event in which one boy and one girl aged 12–18 from each of the twelve districts surrounding the Capitol are selected by lottery to compete in a televised battle royale to the death.";
@@ -324,7 +324,7 @@
         $book16->BookID = 15;
         $book16->Title = "The Hunger Games: Catching Fire";
         $book16->Author = "Suzanne Collins";
-        $book16->Genre = "Fantasy";
+        $book16->Genre = "Young Adult";
         $book16->Price = 7.99;
         $book16->ImagePath = "img/the_hunger_games_catching_fire.jpg";
         $book16->Description = "Catching Fire is a 2009 science fiction young adult novel by the American novelist Suzanne Collins, the second book in The Hunger Games series. As the sequel to the 2008 bestseller The Hunger Games, it continues the story of Katniss Everdeen and the post-apocalyptic nation of Panem. Following the events of the previous novel, a rebellion against the oppressive Capitol has begun, and Katniss and fellow tribute Peeta Mellark are forced to return to the arena in a special edition of the Hunger Games.";
@@ -334,7 +334,7 @@
         $book17->BookID = 16;
         $book17->Title = "The Hunger Games: Mockingjay";
         $book17->Author = "Suzanne Collins";
-        $book17->Genre = "Fantasy";
+        $book17->Genre = "Young Adult";
         $book17->Price = 7.99;
         $book17->ImagePath = "img/the_hunger_games_mockingjay.jpg";
         $book17->Description = "Mockingjay is a 2010 science fiction novel by American author Suzanne Collins. It is chronologically the last installment of The Hunger Games series, following 2008's The Hunger Games and 2009's Catching Fire. The book continues the story of Katniss Everdeen, who agrees to unify the districts of Panem in a rebellion against the tyrannical Capitol.";
@@ -344,11 +344,103 @@
         $book18->BookID = 17;
         $book18->Title = "The Ballad of Songbirds and Snakes";
         $book18->Author = "Suzanne Collins";
-        $book18->Genre = "Fantasy";
+        $book18->Genre = "Young Adult";
         $book18->Price = 7.99;
         $book18->ImagePath = "img/ballad_of_songbirds_and_snakes.jpg";
         $book18->Description = "The Ballad of Songbirds and Snakes is a dystopian action-adventure novel by American author Suzanne Collins. It is a spin-off and a prequel to The Hunger Games trilogy. It was released on May 19, 2020, by Scholastic. An audiobook of the novel read by American actor Santino Fontana was released simultaneously with the printed edition.[1] The book received a virtual launch due to the COVID-19 pandemic.[2] A film adaptation from Lionsgate is set to be released on November 17, 2023.";
         insertBook($book18, $conn);
+
+        $book19 = new Book();
+        $book19->BookID = 18;
+        $book19->Title = "A Game of Thrones";
+        $book19->Author = "George R.R. Martin";
+        $book19->Genre = "Fantasy";
+        $book19->Price = 12.50;
+        $book19->ImagePath = "img/a_game_of_thrones.jpg";
+        $book19->Description = "The first volume in the A Song of Ice and Fire series – unquestionably one of the greatest fantasy epics of all time. Here, we are introduced to the Seven Kingdoms of Westeros, and the major players with eyes on its Iron Throne. As noble families battle for power, greater threats face them all: for winter is coming to Westeros, and here, winter can last a lifetime.";
+        insertBook($book19, $conn);
+
+        $book20 = new Book();
+        $book20->BookID = 19;
+        $book20->Title = "A Clash of Kings";
+        $book20->Author = "George R.R. Martin";
+        $book20->Genre = "Fantasy";
+        $book20->Price = 12.50;
+        $book20->ImagePath = "img/a_clash_of_kings.jpg";
+        $book20->Description = "From the ancient citadel of Dragonstone to the forbidding lands of Winterfell, chaos reigns as pretenders to the Iron Throne of the Seven Kingdoms stake their claims through tempest, turmoil and war.
+
+        As a prophecy of doom cuts across the sky - a comet the colour of blood and flame - five factions struggle for control of a divided land. Brother plots against brother and the dead rise to walk in the night.";
+        insertBook($book20, $conn);
+
+        $book21 = new Book();
+        $book21->BookID = 20;
+        $book21->Title = "A Storm of Swords: Part 1 Steel and Snow";
+        $book21->Author = "George R.R. Martin";
+        $book21->Genre = "Fantasy";
+        $book21->Price = 12.50;
+        $book21->ImagePath = "img/a_storm_of_swords_part_1.jpg";
+        $book21->Description = "Winter approaches Westeros like an angry beast.
+
+        The Seven Kingdoms are divided by revolt and blood feud. In the northern wastes, a horde of hungry, savage people steeped in the dark magic of the wilderness is poised to invade the Kingdom of the North where Robb Stark wears his new-forged crown. And Robb's defences are ranged against the South, the land of the cunning and cruel Lannisters, who have his younger sisters in their power.
+        
+        Throughout Westeros, the war for the Iron Throne rages more fiercely than ever, but if the Wall is breached, no king will live to claim it.";
+        insertBook($book21, $conn);
+
+        $book22 = new Book();
+        $book22->BookID = 21;
+        $book22->Title = "A Storm of Swords: Part 2 Blood and Gold";
+        $book22->Author = "George R.R. Martin";
+        $book22->Genre = "Fantasy";
+        $book22->Price = 12.50;
+        $book22->ImagePath = "img/a_storm_of_swords_part_2.jpg";
+        $book22->Description = "The Starks are scattered.
+
+        Robb Stark may be King in the North, but he must bend to the will of the old tyrant Walder Frey if he is to hold his crown. And while his youngest sister, Arya, has escaped the clutches of the depraved Cersei Lannister and her son, the capricious boy-king Joffrey, Sansa Stark remains their captive.
+        
+        Meanwhile, across the ocean, Daenerys Stormborn, the last heir of the Dragon King, delivers death to the slave-trading cities of Astapor and Yunkai as she approaches Westeros with vengeance in her heart.";
+        insertBook($book22, $conn);
+
+        $book23 = new Book();
+        $book23->BookID = 22;
+        $book23->Title = "A Feast for Crows";
+        $book23->Author = "George R.R. Martin";
+        $book23->Genre = "Fantasy";
+        $book23->Price = 12.50;
+        $book23->ImagePath = "img/a_feast_for_crows.jpg";
+        $book23->Description = "The Lannisters are in power on the Iron Throne.
+
+        The war in the Seven Kingdoms has burned itself out, but in its bitter aftermath new conflicts spark to life. The Martells of Dorne and the Starks of Winterfell seek vengeance for their dead. Euron Crow's Eye, as black a pirate as ever raised a sail, returns from the smoking ruins of Valyria to claim the Iron Isles.
+        
+        From the icy north, where Others threaten the Wall, apprentice Maester Samwell Tarly brings a mysterious babe in arms to the Citadel. As plots, intrigue and battle threaten to engulf Westeros, victory will go to the men and women possessed of the coldest steel and the coldest hearts.";
+        insertBook($book23, $conn);
+
+        $book24 = new Book();
+        $book24->BookID = 23;
+        $book24->Title = "A Dance With Dragons: Part 1 Dreams and Dust";
+        $book24->Author = "George R.R. Martin";
+        $book24->Genre = "Fantasy";
+        $book24->Price = 12.50;
+        $book24->ImagePath = "img/a_dance_with_dragons_part_1.jpg";
+        $book24->Description = "In the aftermath of a colossal battle, new threats are emerging from every direction.
+
+        Tyrion Lannister, having killed his father, and wrongfully accused of killing his nephew, King Joffrey, has escaped from King's Landing with a price on his head.
+        
+        To the north lies the great Wall of ice and stone - a structure only as strong as those guarding it. Eddard Stark's son Jon Snow has been elected 998th Lord Commander of the Night's Watch. But Jon has enemies both inside and beyond the Wall. And in the east Daenerys Targaryen struggles to hold a city built on dreams and dust.";
+        insertBook($book24, $conn);
+
+        $book25 = new Book();
+        $book25->BookID = 24;
+        $book25->Title = "A Dance With Dragons: Part 2 After the Feast";
+        $book25->Author = "George R.R. Martin";
+        $book25->Genre = "Fantasy";
+        $book25->Price = 12.50;
+        $book25->ImagePath = "img/a_dance_with_dragons_part_2.jpg";
+        $book25->Description = "The future of the Seven Kingdoms hangs in the balance.
+
+        In King's Landing the Queen Regent, Cersei Lannister, awaits trial, abandoned by all those she trusted; while in the eastern city of Yunkai her brother Tyrion has been sold as a slave. From the Wall, having left his wife and the Red Priestess Melisandre under the protection of Jon Snow, Stannis Baratheon marches south to confront the Boltons at Winterfell. But beyond the Wall the wildling armies are massing for an assault...
+        
+        On all sides bitter conflicts are reigniting, played out by a grand cast of outlaws and priests, soldiers and skinchangers, nobles and slaves. The tides of destiny will inevitably lead to the greatest dance of all.";
+        insertBook($book24, $conn);
     }
 
     $conn = openConnection();

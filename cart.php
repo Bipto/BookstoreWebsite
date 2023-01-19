@@ -35,11 +35,13 @@
         $orderTotal = 0.0;
         foreach ($books as $book)
         {
+            $bookPrice = number_format((float)$book->Book->Price, 2, '.', '');
+
             $html = "
                 <div class='item'>
                     <img src= '{$book->Book->ImagePath}' class='book-image'>
                     <h4 class='book-info'> {$book->Book->Title} </h4>
-                    <h4 class='book-info'> £{$book->Book->Price} </h4>
+                    <h4 class='book-info'> £$bookPrice </h4>
                     <input type='button' value='Remove' class='remove-button' onclick='removeBookFromCart($book->CartID)'>
                 </div>
             ";
@@ -51,8 +53,9 @@
         }
 
         echo"</div>";
-
-        echo "<h1 class='order-total'> Total: £$orderTotal </h1>";
+        
+        $orderTotalDisplay = number_format((float)$orderTotal, 2, '.', '');
+        echo "<h1 class='order-total'> Total: £$orderTotalDisplay </h1>";
 
     ?>
 </body>

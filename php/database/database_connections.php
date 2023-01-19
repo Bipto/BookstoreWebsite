@@ -101,7 +101,7 @@
         $query = $conn->prepare($sql);
         $query->bind_param("si", $customer->Email,  $bookID);
 
-        if ($query->execute() !== TRUE){
+        if ($query->execute() === FALSE){
             echo "Data could not be inserted: " . $conn->error;
         }
 

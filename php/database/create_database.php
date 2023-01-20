@@ -96,10 +96,16 @@
     function createOrdersTable($conn){
         $create_orders_sql = "CREATE TABLE Bookstore.Orders(
             OrderID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-            Email VARCHAR(50) NOT  NULL,
-            FOREIGN KEY (Email) REFERENCES Bookstore.Customers(Email),
+            AccountEmail VARCHAR(50) NOT  NULL,
+            FOREIGN KEY (AccountEmail) REFERENCES Bookstore.Customers(Email),
             Total DECIMAL(6,2) NOT NULL,
-            Date DATETIME NOT NULL
+            Date DATETIME NOT NULL,
+            OrderEmail VARCHAR(50) NOT NULL,
+            HouseNumber VARCHAR(30) NOT NULL,
+            Street VARCHAR(50) NOT NULL,
+            County VARCHAR(50) NOT NULL,
+            Country VARCHAR(50) NOT NULL,
+            PostCode VARCHAR(7) NOT NULL
             )";
 
         if ($conn->query($create_orders_sql) === TRUE){

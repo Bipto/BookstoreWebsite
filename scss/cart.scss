@@ -68,3 +68,19 @@
     text-align: center;
     font-size: 1.5em;
 }
+
+.bottom
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.checkout-button
+{    
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}

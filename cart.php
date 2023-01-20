@@ -57,6 +57,18 @@
         $orderTotalDisplay = number_format((float)$orderTotal, 2, '.', '');
         echo "<h1 class='order-total'> Total: £$orderTotalDisplay </h1>";
 
+        $checkoutButton = "
+            <div class='bottom'>
+                <a href='invoice.php'>
+                    <input type='button' value='Checkout' class='checkout-button'>
+                </a>
+            </div>
+        ";
+
+        echo $checkoutButton;
+
     ?>
+
+
 </body>
 </html>

@@ -26,11 +26,13 @@
         echo "<div class='container' id='container'>";
 
         if (count($books) == 0)
+        {
             echo '
                 <div class="no-book-info">
                     <h4 class="book-info">No books in cart</h4>
                 </div>
             ';
+        }
 
         $orderTotal = 0.0;
         foreach ($books as $book)

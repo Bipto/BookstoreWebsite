@@ -40,3 +40,8 @@ function removeBookFromCart(id)
     xhttp.open("GET", filepath, true);
     xhttp.send();
 }
+
+function paymentBackClick()
+{
+    location.href = "invoice.php";
+}

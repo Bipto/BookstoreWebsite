@@ -8,16 +8,18 @@
 
         echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
         echo '<script type="text/javascript" src="js/main.js"></script>';
+        echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo">';
 
         $html = 
         '
         <div class="dropdown">
             <div class="topbar">
                 <h1 id="title">Selby Bookstore</h1>
-            </div>
-            <a href="javascript:void(0);" class="icon" onclick="toggleDropdownMenu()()">
-                <i class="fa fa-bars"></i>
+                <a href="javascript:void(0);" class="icon" onclick="toggleDropdownMenu()()">
+                    <i class="fa fa-bars">
+                </i>
             </a>
+            </div>
         </div>';
         echo $html;
 

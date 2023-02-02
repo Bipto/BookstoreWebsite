@@ -35,6 +35,112 @@
         }
     }
 
+    function insertOrder($order)
+    {
+        $conn = openConnection();
+
+        $sql = 
+        "
+        INSERT INTO Bookstore.Orders(AccountEmail, Total, Date, OrderEmail, HouseNumber, Street, County, Country, PostCode)
+        VALUES ('$order->AccountEmail', $order->Total, '$order->Date', '$order->OrderEmail', '$order->HouseNumber', '$order->Street', '$order->County', '$order->Country', '$order->PostCode')
+        ";
+
+        if ($conn->query($sql) !== TRUE)
+            echo "Could not create order: " .$conn->error;
+
+        $conn->close();
+    }
+
+    function insertBooksSales($orderID, $books)
+    {
+        $conn = openConnection();
+
+        foreach ($books as $book)
+        {
+            $sql = "
+            INSERT INTO Bookstore.BookSales(BookID, OrderID)
+            VALUES(?, ?);
+            ";
+
+            $query = $conn->prepare($sql);
+            $query->bind_param("ii", $book->Book->BookID, $orderID);
+
+            if ($query->execute() === FALSE)
+                echo "Could not insert book sale: " .$conn->error;
+        }
+
+        $conn->close();
+    }
+
+    function clearCart($email)
+    {
+        $conn = openConnection();
+
+        $sql = "DELETE FROM Bookstore.Carts WHERE Email = ?";
+
+        $query = $conn->prepare($sql);
+        $query->bind_param("s", $email);
+
+        if ($query->execute() === FALSE)
+            echo "Could not remove book from cart";
+
+        $conn->close();
+    }
+
+    function getMostRecentOrderID()
+    {
+        $orderID = -1;
+        $conn = openConnection();
+
+        $sql = 
+        "
+            SELECT OrderID FROM Bookstore.Orders
+            ORDER BY OrderID DESC
+            LIMIT 0,1
+        ";
+
+        $query = $conn->prepare($sql);
+        $query->execute();
+        $result = $query->get_result();
+        if ($result->num_rows > 0)
+        {
+            $row = $result->fetch_assoc();
+            $orderID = $row["OrderID"];
+        }
+        
+        $conn->close();
+
+        return $orderID;
+    }
+
+    function getOrdersFromEmail($email)
+    {
+        $conn = openConnection();
+
+        $sql = "SELECT Total, Date FROM Bookstore.Orders WHERE AccountEmail = ?";
+        $query = $conn->prepare($sql);
+        $query->bind_param("s", $email);
+        $query->execute();
+
+        $orders = array();
+
+        $result = $query->get_result();
+        if ($result->num_rows > 0)
+        {
+            while ($row = $result->fetch_assoc())
+            {
+                $total = $row["Total"];
+                $date = $row["Date"];
+                $text = "$date - £$total";
+                array_push($orders, $text);
+            }
+        }
+
+        $conn->close();
+
+        return $orders;
+    }
+
     function getBookById($bookID)
     {
         $conn = openConnection();
@@ -92,14 +198,14 @@
         return $books;
     }
 
-    function addBookToCart($customer, $bookID)
+    function addBookToCart($email, $bookID)
     {
         $conn = openConnection();
 
         $sql = "INSERT INTO Bookstore.Carts(Email, BookID)
         VALUES(?, ?)";
         $query = $conn->prepare($sql);
-        $query->bind_param("si", $customer->Email,  $bookID);
+        $query->bind_param("si", $email,  $bookID);
 
         if ($query->execute() === FALSE){
             echo "Data could not be inserted: " . $conn->error;
@@ -108,7 +214,7 @@
         $conn->close();
     }
 
-    function getBooksInCart($customer)
+    function getBooksInCart($email)
     {
         $books = array();
         
@@ -117,7 +223,7 @@
             SELECT Bookstore.Carts.CartID, Bookstore.Books.BookID, Bookstore.Books.Title, Bookstore.Books.Author, Bookstore.Books.BookDescription, Bookstore.Books.Genre, Bookstore.Books.Price, Bookstore.Books.ImagePath
             FROM Bookstore.Carts
             INNER JOIN Bookstore.Books ON Bookstore.Carts.BookID = Bookstore.Books.BookID
-            WHERE Bookstore.Carts.Email = '" .$customer->Email. "';
+            WHERE Bookstore.Carts.Email = '" .$email. "';
             ";
 
             $result = $conn->query($sql);

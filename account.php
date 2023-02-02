@@ -10,20 +10,39 @@
 <body>
     <?php
         require_once "php/layout.php";
+        require_once "php/database/database_connections.php";
+
         createHeader();
+
+        echo "<div class='container'>";
 
         if (isset($_SESSION["Customer"]))
         {
             $customer = $_SESSION["Customer"];
-            echo "<div class='content'><h4>" .$customer->Email. "</h4></div>";
-        }
+            echo "<h2>" .$customer->Email. "</h2>";
 
-        $html = "
-            <a href='sign_out.php' class='content'>
-                <button class='content'>Sign Out</button>
+            $orders = getOrdersFromEmail($customer->Email);
+
+            if (!empty($orders))
+            {
+                echo "<h3>Order History: </h3>";
+
+                foreach ($orders as $order)
+                {
+                    echo "$order<br>";
+                }
+            }
+
+            $html = "
+            <a href='sign_out.php'>
+                <button class='sign-out'>Sign Out</button>
             </a>";
 
-        echo $html;
+            echo $html;
+
+        }
+
+        echo "</div>";
     ?>
 
 

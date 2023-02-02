@@ -1,26 +1,27 @@
 @import "variables";
 
- @media only screen and (max-width: 1000px)
+ @media only screen and (max-width: 1200px)
  {
     body
     {
         background-color: $backgroundColor;
         margin: 0;
+        font-size: 0.7em;
     }
 
     .topbar
     {
         background-color: $titlebarColor;
         padding-top: 10px;
-        width: 90%;
-        text-align: center;
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 60% 40%;
     }
 
     .navbar
     {
         width: 100%;
-        margin-left: 5px;
-        margin-right: 5px;
         align-items: center;
         text-align: center;
         display: none;
@@ -28,20 +29,17 @@
 
     .dropdown
     {
-        display: grid;
-        grid-template-columns: 85% 15%;
         background-color: $titlebarColor;
         align-items: center;
     }
     
     .icon
     {
-        display: block;
         font-size: 150%;
     }
  }
 
- @media only screen and (min-width: 1000px)
+ @media only screen and (min-width: 1200px)
  {
     body
     {
@@ -57,11 +55,13 @@
         background-color: $titlebarColor;
         padding-top: 10px;
         padding-bottom: 10px;
-        width: 100%;
+        width: 80%;
+        margin-left: 10%;
         justify-content: flex-start;
         align-items: center;
         display: grid;
         grid-template-columns: 50% 50%;
+        border-radius: 25px;
     }
     
     #title
@@ -72,12 +72,13 @@
     .navbar
     {
         background-color: $navbarColor;
-        width: 90%;
-        margin-left: 5%;
-        margin-top: 0.35em;
+        width: 50%;
+        margin-top: 5px;
+        margin-left: 25%;
         display: grid;
         grid-template-columns: 25% 25% 25% 25%;
         text-align: center;
+        border-radius: 25px;
     }
 
     .icon
@@ -91,15 +92,27 @@
 .navbar > nav
 {
     transition: 350ms;
+    border-radius: px;
 }
 
 .navbar > nav:hover
 {
     background-color: $navbarHoveredColor;
+    border-radius: 25px;
 }
 
 a
 {
     text-decoration: none;
     color: black;
+}
+
+body
+{
+    font-family: "Arvo", serif;
+}
+
+#title
+{
+    margin-left: 5px;
 }

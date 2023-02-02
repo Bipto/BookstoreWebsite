@@ -6,3 +6,40 @@
     margin-top: 5px;
     font-size: 1.4em;
 }
+
+.info
+{
+    font-size: 1.5em;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+@media only screen and (max-width: 1000px)
+{
+    .map
+    {
+        width: 95%;
+        height: 60vw;
+    }
+
+    .twitter-timeline
+    {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 1000px)
+{
+    .map
+    {
+        width: 48%;
+        height: 600px;
+        float: right;
+    }
+
+    .twitter-timeline
+    {
+        width: 48%;
+        float: left;
+    }
+}

@@ -12,9 +12,53 @@
     <?php
 
         require_once "php/layout.php";
-        createHeader();
-    ?>
+        require_once "php/database/database_connections.php";
+        require_once "php/database/order.php";
 
-    <h3>Payment confirmed</h3>
+        createHeader();
+
+        $cardNum = $_POST["cardNum"];
+        $cardName = $_POST["cardName"];
+        $expiryDate = $_POST["expiryDate"];
+        $securityCode = $_POST["securityCode"];
+
+        $valid = TRUE;
+
+        if (empty($cardNum))
+        {
+            echo "No card number was entered<br>";
+            $valid = FALSE;
+        }
+
+        if (empty($cardName))
+        {
+            echo "No name was entered<br>";
+            $valid = FALSE;
+        }
+
+        if (empty($expiryDate))
+        {
+            echo "No expiry date was entered<br>";
+            $valid = FALSE;
+        }
+
+        if (empty($securityCode))
+        {
+            echo "No security code was entered<br>";
+            $valid = FALSE;
+        }
+
+        if ($valid)
+        {
+            echo "<h3>Payment confirmed</h3>";
+            
+            $order = $_SESSION["Order"];
+            insertOrder($order);
+            $orderID = getMostRecentOrderID();
+            insertBooksSales($orderID, $order->Books);
+            clearCart($order->AccountEmail);
+        }
+
+    ?>
 </body>
 </html>

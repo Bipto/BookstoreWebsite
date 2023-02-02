@@ -18,10 +18,10 @@
         if (isset($_GET["id"]))
         {
             $bookID = $_GET["id"];
-            addBookToCart($customer, $bookID);
+            addBookToCart($customer->Email, $bookID);
         }
 
-        $books = getBooksInCart($customer);
+        $books = getBooksInCart($customer->Email);
 
         echo "<div class='container' id='container'>";
 
@@ -55,20 +55,22 @@
         }
 
         echo"</div>";
-        
-        $orderTotalDisplay = number_format((float)$orderTotal, 2, '.', '');
-        echo "<h1 class='order-total'> Total: £$orderTotalDisplay </h1>";
 
-        $checkoutButton = "
-            <div class='bottom'>
-                <a href='invoice.php'>
-                    <input type='button' value='Checkout' class='checkout-button'>
-                </a>
-            </div>
-        ";
-
-        echo $checkoutButton;
-
+        if (count($books) > 0)
+        {
+            $orderTotalDisplay = number_format((float)$orderTotal, 2, '.', '');
+            echo "<h1 class='order-total'> Total: £$orderTotalDisplay </h1>";
+    
+            $checkoutButton = "
+                <div class='bottom'>
+                    <a href='invoice.php'>
+                        <input type='button' value='Checkout' class='checkout-button'>
+                    </a>
+                </div>
+            ";
+    
+            echo $checkoutButton;
+        }
     ?>
 
 

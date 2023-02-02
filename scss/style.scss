@@ -63,12 +63,14 @@
 {
     width: 15em;
     font-size: 1.2em;
+    border-radius: 5px;
 }
 
 #searchButton
 {
     font-size: 1.2em;
     margin-top: 5px;
+    border-radius: 5px;
 }
 
 .book
@@ -81,4 +83,10 @@
 .book:hover
 {
     background-color: $navbarHoveredColor;
+    border-radius: 25px;
+}
+
+body
+{
+    font-family: "Audiowide", sans-serif;
 }

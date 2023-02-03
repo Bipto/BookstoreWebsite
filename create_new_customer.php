@@ -16,7 +16,7 @@
         createHeader();
 
         $email = $_POST["email"];
-        $title = $_POST["title"];
+        $title = $_POST["customerTitle"];
         $fname = $_POST["fname"];
         $sname = $_POST["sname"];
         $dob = $_POST["dob"];

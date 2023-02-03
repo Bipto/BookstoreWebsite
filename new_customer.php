@@ -19,12 +19,12 @@
     </div>
 
     <form action="create_new_customer.php" method="post" class="form">
-        <label for="email" type="email" class="label">Email:</label>
+        <label for="email" type="email" class="label">Email:</label><br>
         <input type="text" id="email" name="email" class="entry">
         <br><br>
         
-        <label for="title" class="label">Title</label><br>
-        <select name="title" id="title" class="entry">
+        <label for="title" class="label">Title:</label><br>
+        <select name="title" id="customerTitle" class="entry">
             <option value="Mr">Mr</option>
             <option value="Miss">Miss</option>
             <option value="Mrs">Mrs</option>
@@ -63,15 +63,15 @@
         <input type="text" id="country" name="country" class="entry">
         <br><br>
 
-        <label for="postCode" class="label">Post Code:</label>
+        <label for="postCode" class="label">Post Code:</label><br>
         <input type="text" id="postCode" name="postCode" class="entry">
         <br><br>
 
-        <label for="password" class="label">Password:</label>
+        <label for="password" class="label">Password:</label><br>
         <input type="password" id="password" name="password" class="entry">
         <br><br>
 
-        <label for="confirmPasssword" class="label">Confirm Password:</label>
+        <label for="confirmPasssword" class="label">Confirm Password:</label><br>
         <input type="password" id="confirmPassword" name="confirmPassword" class="entry">
         <br><br>
 

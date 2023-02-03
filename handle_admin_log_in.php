@@ -50,7 +50,7 @@
 
                 $_SESSION["Admin"] = $admin;
 
-                header('Location: admin_dashboard.php');
+                header('Location: admin_dashboard.php?action=manage');
                 exit();
             }
             else

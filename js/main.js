@@ -1,4 +1,4 @@
-
+//index page
 function searchBooks()
 {
     const xhttp = new XMLHttpRequest();
@@ -15,6 +15,7 @@ function searchBooks()
     xhttp.send();
 }
 
+//layout
 function toggleDropdownMenu()
 {
     var x = document.getElementById("navbar");
@@ -28,6 +29,7 @@ function toggleDropdownMenu()
     }
 }
 
+//cart page
 function removeBookFromCart(id)
 {
     const xhttp = new XMLHttpRequest();
@@ -41,6 +43,7 @@ function removeBookFromCart(id)
     xhttp.send();
 }
 
+//payment page
 function paymentBackClick()
 {
     location.href = "invoice.php";

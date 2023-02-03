@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-In</title>
-    <link rel="stylesheet" href="css/sign_in.css">
+    <title>Admin Sign-In</title>
+    <link rel="stylesheet" href="css/admin_sign_in.css">
 </head>
 <body>
     <?php
@@ -16,28 +16,15 @@
     ?>
 
     <div class='title'>
-        <h1>Sign In</h1>
+        <h1>Admin Sign In</h1>
     </div>
 
-    <form class="login" action="handle_customer_log_in.php" method="post">
+    <form class="login" action="handle_admin_log_in.php" method="post">
         <label for="email" id="email">Email:</label><br>
         <input type="text" id="email" name="email"><br>
         <label for="password" id="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
         <input type="submit" id="submitButton" value="Sign In">
     </form>
-
-    <a href="new_customer.php">
-        <p id="createAccount">
-            Create a new account?
-        </p>
-    </a>
-
-    <a href="admin_sign_in.php">
-        <p id="adminSignIn">
-            Sign in (Adminstrator)
-        </p>
-    </a>
-
 </body>
 </html>

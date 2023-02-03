@@ -43,11 +43,12 @@
 {
     font-size: 1.2em;
     margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 .item
 {
-    width: 12em;
+    width: 22em;
     transition: 350ms;
     user-select: none;
 }
@@ -83,4 +84,5 @@
 {    
     font-size: 1.5em;
     margin-bottom: 5px;
+    border-radius: 5px;
 }

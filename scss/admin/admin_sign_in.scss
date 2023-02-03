@@ -1,4 +1,4 @@
-@import "layout";
+@import "../layout";
 
 .title
 {
@@ -13,18 +13,6 @@
     margin-top: 5px;
     margin-left: auto;
     display: grid;
-}
-
-#createAccount
-{
-    text-align: center;
-    font-size: 1.2em;
-}
-
-#adminSignIn
-{
-    text-align: center;
-    font-size: 1.2em;
 }
 
 #email

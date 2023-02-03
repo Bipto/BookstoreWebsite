@@ -20,11 +20,7 @@
     {
         width: 95%;
         height: 60vw;
-    }
-
-    .twitter-timeline
-    {
-        width: 95%;
+        margin-left: 2.5%;
     }
 }
 
@@ -32,14 +28,13 @@
 {
     .map
     {
-        width: 48%;
+        width: 60%;
         height: 600px;
-        float: right;
+        margin-left: 20%;
     }
+}
 
-    .twitter-timeline
-    {
-        width: 48%;
-        float: left;
-    }
+.map
+{
+    border-radius: 5px;
 }

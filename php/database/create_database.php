@@ -1,6 +1,7 @@
 <?php
 
     require_once "database_connections.php";
+    require_once "administrator.php";
 
     function createDatabase($conn)
     {
@@ -446,7 +447,26 @@
         In King's Landing the Queen Regent, Cersei Lannister, awaits trial, abandoned by all those she trusted; while in the eastern city of Yunkai her brother Tyrion has been sold as a slave. From the Wall, having left his wife and the Red Priestess Melisandre under the protection of Jon Snow, Stannis Baratheon marches south to confront the Boltons at Winterfell. But beyond the Wall the wildling armies are massing for an assault...
         
         On all sides bitter conflicts are reigniting, played out by a grand cast of outlaws and priests, soldiers and skinchangers, nobles and slaves. The tides of destiny will inevitably lead to the greatest dance of all.";
-        insertBook($book24, $conn);
+        insertBook($book25, $conn);
+    }
+
+    function createDefaultAdmin($conn)
+    {            
+        $admin = new Admin();
+        $admin->Email = "admin@bookstore.co.uk";
+        $admin->Title = "Mr";
+        $admin->FirstName = "Default";
+        $admin->Surname = "Admin";
+        $admin->DateOfBirth = strtotime("1 January 1999");
+        $admin->HouseNum = 7;
+        $admin->Street = "Main Road";
+        $admin->Town = "Selby";
+        $admin->County = "County";
+        $admin->Country = "Country";
+        $admin->PostCode = "Y08 7PT";
+        $admin->Password = password_hash("password", PASSWORD_DEFAULT);
+
+        insertAdmin($admin, $conn);
     }
 
     $conn = openConnection();
@@ -460,6 +480,7 @@
     createCartTable($conn);
 
     createBooks($conn);
+    createDefaultAdmin($conn);
 
     //close connection to database
     $conn->close();

@@ -16,7 +16,7 @@
             <div class="topbar">
                 <h1 id="title">Selby Bookstore</h1>
                 <a href="javascript:void(0);" class="icon" onclick="toggleDropdownMenu()()">
-                    <i class="fa fa-bars">
+                    <i class="fa fa-bars" id="hamburger">
                 </i>
             </a>
             </div>

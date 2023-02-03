@@ -1,14 +1,6 @@
 @import "layout";
 
-.book
-{
-    text-align: center;
-    font-size: 1.5em;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 17%;
-    margin-right: 17%;
-}
+
 
 .description
 {
@@ -31,6 +23,16 @@
         vertical-align: middle;
         object-fit: fill;
     }
+
+    .book
+    {
+        text-align: center;
+        font-size: 1.5em;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
 }
 
 @media only screen and (min-width: 1000px)
@@ -41,5 +43,15 @@
         vertical-align: middle;
         margin: 5px;
         object-fit: fill;
+    }
+
+    .book
+    {
+        text-align: center;
+        font-size: 1.5em;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 17%;
+        margin-right: 17%;
     }
 }

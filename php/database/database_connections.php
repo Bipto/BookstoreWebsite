@@ -35,6 +35,20 @@
         }
     }
 
+    function insertAdmin($admin, $conn)
+    {
+        $sql = 
+            "
+            INSERT INTO Bookstore.Administrators(Email, Title, FirstName, Surname, DateOfBirth, HouseNumber, Street, Town, County, Country, PostCode, Password)
+            VALUES ('$admin->Email', '$admin->Title', '$admin->FirstName', '$admin->Surname', '$admin->DateOfBirth', '$admin->HouseNumber', '$admin->Street', '$admin->Town', '$admin->County', '$admin->Country', '$admin->PostCode', '$admin->Password')
+            ";
+
+        if ($conn->query($sql) === TRUE)
+            echo "Default admin created successfully";
+        else
+            echo "Default admin could not be created: " . $conn->error;
+    }
+
     function insertOrder($order)
     {
         $conn = openConnection();

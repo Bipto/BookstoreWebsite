@@ -1,6 +1,6 @@
 <?php
 
-class Customer{
+class Admin{
     public $Email;
     public $Title;
     public $FirstName;
@@ -13,15 +13,6 @@ class Customer{
     public $Country;
     public $PostCode;
     public $Password;
-}
-
-function login()
-{
-    $customer = new Customer();
-    $customer->FirstName = "Adam";
-    $customer->Surname = "Beardow";
-
-    $_SESSION["Customer"] = $customer;
 }
 
 ?>

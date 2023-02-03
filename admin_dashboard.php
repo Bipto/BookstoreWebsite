@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="css/admin_dashboard.css">
-    <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>    
 
@@ -19,7 +18,6 @@
             die("Not logged in as an administrator!");
         }
     ?>
-
 
     <div class="titlebar">        
         <h1 class="title">Selby Bookstore Admin Dashboard</h1><br>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Customer</title>
     <link rel="stylesheet" href="css/new_customer.css">
+    <link rel="icon" href="img/logo.png">
 </head>
 <body>
     <?php
@@ -24,7 +25,7 @@
         <br><br>
         
         <label for="title" class="label">Title:</label><br>
-        <select name="title" id="customerTitle" class="entry">
+        <select name="title" id="title" class="combo">
             <option value="Mr">Mr</option>
             <option value="Miss">Miss</option>
             <option value="Mrs">Mrs</option>

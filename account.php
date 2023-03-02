@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
     <link rel="stylesheet" href="css/account.css">
+    <link rel="icon" href="img/logo.png">
 </head>
 <body>
     <?php
@@ -13,7 +14,7 @@
         require_once "php/database/database_connections.php";
 
         createHeader();
-
+        
         echo "<div class='container'>";
 
         if (isset($_SESSION["Customer"]))

@@ -279,4 +279,56 @@
         $conn->close();
     }
 
+    function updateBook($book)
+    {
+        $conn = openConnection();
+
+        $title = htmlspecialchars($book->Title, ENT_QUOTES);
+        $author = htmlspecialchars($book->Author, ENT_QUOTES);
+        $description = htmlspecialchars($book->Description, ENT_QUOTES);
+        $genre = htmlspecialchars($book->Genre, ENT_QUOTES);
+        $price = htmlspecialchars($book->Price, ENT_QUOTES);
+        $path = htmlspecialchars($book->ImagePath, ENT_QUOTES);
+
+        $sql = "
+        UPDATE Bookstore.Books
+        SET 
+            Title = '$title',
+            Author = '$author',
+            BookDescription = '$description',
+            Genre = '$genre',
+            Price = $price,
+            ImagePath = '$path'
+        WHERE BookID = $book->BookID
+        ";
+
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "Book updated successfully";
+        }
+        else
+        {
+            echo "Error updating book: " . $conn->error;
+        }
+
+        $conn->close();
+    }
+
+    function removeBook($bookId)
+    {
+        $conn = openConnection();
+
+        $sql = "DELETE FROM Bookstore.Books WHERE BookID = ?";
+
+        $query = $conn->prepare($sql);
+        $query->bind_param("i", $bookId);
+
+        if ($query->execute() === TRUE)
+            echo "Book removed from database";
+        else
+            echo "Book could not be removed from database: " .$conn->error;     
+
+        $conn->close();
+    }
+
 ?>

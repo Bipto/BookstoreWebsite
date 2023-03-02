@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Confirmed</title>
     <link rel="stylesheet" href="css/payment_confirmed.css">
+    <link rel="icon" href="img/logo.png">
 </head>
 <body>
 

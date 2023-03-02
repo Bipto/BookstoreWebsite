@@ -5,21 +5,25 @@
         require_once "database/customer.php";
 
         session_start();
-        unset($_SESSION["Admin"]);
 
         echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
         echo '<script type="text/javascript" src="js/main.js"></script>';
         echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo">';
 
+        echo "
+        <span id='mouse-circle' class='circle'></span>
+        ";
+
         $html = 
         '
         <div class="dropdown">
             <div class="topbar">
+                <img src="img/logo.png" class="logo">
                 <h1 id="title">Selby Bookstore</h1>
                 <a href="javascript:void(0);" class="icon" onclick="toggleDropdownMenu()()">
                     <i class="fa fa-bars" id="hamburger">
                 </i>
-            </a>
+                </a>
             </div>
         </div>';
         echo $html;

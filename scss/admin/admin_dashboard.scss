@@ -6,12 +6,66 @@
     padding: 0;
 
     font-family: "Arvo", serif;
-    /* border-radius: 5px; */
+    border-radius: 5px;
 }
 
 body
 {
     background-color: $backgroundColor;
+}
+
+#grid
+{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    gap: 10px;
+
+    flex-basis: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.book-image
+{
+    width: 15em;
+    height: 15em;
+    vertical-align: middle;
+    margin: 5px;
+    object-fit: contain;
+}
+
+.book-title
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.4em;
+}
+
+.book
+{
+    height: 22em;
+    width: 15em;
+    text-align: center;
+    padding-top: 2em;
+    transition: 350ms;
+    user-select: none;
+    border-radius: 50px;
+}
+
+.book:hover
+{
+    background-color: $navbarHoveredColor;
+    border-radius: 25px;
 }
 
 .titlebar
@@ -20,6 +74,11 @@ body
     background-color: $titlebarColor;
     border-radius: 0px;
     height: 5%;
+
+    padding-bottom: 15px;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .title
@@ -28,18 +87,11 @@ body
     padding-left: 0.5em;
 }
 
-.container
-{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 15% 85%;
-}
-
 .navigation
 {
-    height: 500px;
-    background-color: $navbarHoveredColor;
     text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 a
@@ -49,10 +101,100 @@ a
     font-size: 1.5em;
 }
 
-button
+.nav-button
 {
     color: black;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-top: 5px;
     width: 100%;
+}
+
+.content
+{
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.submitButton
+{
+    font-size: 1.2em;
+}
+
+.bookInfo
+{
+    font-size: 1em;
+}
+
+.deleteButton
+{
+    font-size: 1.2em;
+}
+
+@media only screen and (min-width: 1000px)
+{
+    #hamburger
+    {
+        display: none;
+    }
+
+    .container
+    {
+        display: grid;
+        grid-template-columns: 15% 85%;
+    }
+
+    .entry
+    {
+        font-size: 1em;
+        width: 25em;
+    }
+
+    .image
+    {
+        width: 18vw;
+        vertical-align: middle;
+        margin: 5px;
+        object-fit: fill;
+    }
+
+    .titlebar
+    {
+        position: sticky;
+        top: 0px;
+    }
+}
+
+@media only screen and (max-width: 1000px)
+{
+    #hamburger
+    {
+        float: right;
+        margin-right: 25px;
+        margin-top: 15px;
+        font-size: 1.5em;
+    }
+
+    .container
+    {
+        width: 100%;
+        display: block;
+    }
+
+    .navigation
+    {
+        display: none;
+    }
+
+    .entry
+    {
+        font-size: 1em;
+        width: 80%;
+    }
+
+    .image
+    {
+        width: 75%;
+        vertical-align: middle;
+        object-fit: fill;
+    }
 }

@@ -2,7 +2,6 @@
 
 #grid
 {
-    height: 150px;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
@@ -43,6 +42,16 @@
     height: 22em;
     width: 15em;
     text-align: center;
+    padding-top: 2em;
+    transition: 350ms;
+    user-select: none;
+    border-radius: 50px;
+}
+
+.book:hover
+{
+    background-color: $navbarHoveredColor;
+    border-radius: 25px;
 }
 
 .footer
@@ -71,20 +80,6 @@
     font-size: 1.2em;
     margin-top: 5px;
     border-radius: 5px;
-}
-
-.book
-{
-    padding-top: 2em;
-    transition: 350ms;
-    user-select: none;
-    border-radius: 50px;
-}
-
-.book:hover
-{
-    background-color: $navbarHoveredColor;
-    border-radius: 25px;
 }
 
 body

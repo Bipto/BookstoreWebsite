@@ -6,15 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <link rel="stylesheet" href="css/cart.css">
-    <link rel="icon" href="img/logo.png">
 </head>
 <body>
     <?php
         require_once "php/layout.php";
         require_once "php/database/database_connections.php";
         createHeader();
-
-        unset($_SESSION["Admin"]);
 
         $customer = $_SESSION["Customer"];
 

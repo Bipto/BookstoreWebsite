@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer created successfully</title>
     <link rel="stylesheet" href="css/create_new_customer.css">
-    <link rel="icon" href="img/logo.png">
 </head>
 <body>
     <?php

@@ -32,7 +32,7 @@
 
         if (isset($_SESSION["Customer"]))
         {
-            echo "<a href='cart.php?id=".$selectedBook->BookID."'>
+            echo "<a href='add_book_to_cart.php?id=".$selectedBook->BookID."'>
                 <button type='button' class='button'>Add to cart</button>
             </a>";
         }

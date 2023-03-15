@@ -14,8 +14,7 @@
         <span id='mouse-circle' class='circle'></span>
         ";
 
-        $html = 
-        '
+        $html = '
         <div class="dropdown">
             <div class="topbar">
                 <img src="img/logo.png" class="logo">
@@ -34,6 +33,7 @@
                 <a href="index.php"><h1>Home</h1></a>
             </nav>';
 
+        //if customer is not logged in re-direct cart page to sign-in page
         if (!isset($_SESSION["Customer"]))
         {
             echo '
@@ -54,6 +54,8 @@
                     <a href="about.php"><h1>About</h1></a>
                 </nav>';
 
+        //if customer is not logged in, direct to sign-in page
+        //otherwise direct to account page
         if (!isset($_SESSION["Customer"]))
         {
             echo '<nav>

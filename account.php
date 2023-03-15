@@ -30,7 +30,12 @@
 
                 foreach ($orders as $order)
                 {
-                    echo "$order<br>";
+                    $date = new DateTime($order->Date);
+                    $date = $date->format('d-m-Y');
+
+                    echo "<a href='view_order.php?id=$order->OrderID'>";
+                    echo "<h4>$date - £$order->Total</h4>";
+                    echo "</a>";
                 }
             }
 

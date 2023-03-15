@@ -1,6 +1,7 @@
 <?php
 
     require_once "book.php";
+    require_once "order.php";
 
     function openConnection()
     {
@@ -131,7 +132,7 @@
     {
         $conn = openConnection();
 
-        $sql = "SELECT Total, Date FROM Bookstore.Orders WHERE AccountEmail = ?";
+        $sql = "SELECT OrderID, Total, Date FROM Bookstore.Orders WHERE AccountEmail = ?";
         $query = $conn->prepare($sql);
         $query->bind_param("s", $email);
         $query->execute();
@@ -143,10 +144,12 @@
         {
             while ($row = $result->fetch_assoc())
             {
-                $total = $row["Total"];
-                $date = $row["Date"];
-                $text = "$date - £$total";
-                array_push($orders, $text);
+                $order = new Order();
+                $order->OrderID = $row["OrderID"];
+                $order->Total = $row["Total"];
+                $order->Date = $row["Date"];
+
+                array_push($orders, $order);
             }
         }
 
@@ -234,36 +237,85 @@
         
         $conn = openConnection();
         $sql = "
-            SELECT Bookstore.Carts.CartID, Bookstore.Books.BookID, Bookstore.Books.Title, Bookstore.Books.Author, Bookstore.Books.BookDescription, Bookstore.Books.Genre, Bookstore.Books.Price, Bookstore.Books.ImagePath
-            FROM Bookstore.Carts
+            SELECT 
+                Bookstore.Carts.CartID,
+                Bookstore.Books.BookID,
+                Bookstore.Books.Title,
+                Bookstore.Books.Author,
+                Bookstore.Books.BookDescription,
+                Bookstore.Books.Genre,
+                Bookstore.Books.Price,
+                Bookstore.Books.ImagePath
+                FROM Bookstore.Carts
             INNER JOIN Bookstore.Books ON Bookstore.Carts.BookID = Bookstore.Books.BookID
             WHERE Bookstore.Carts.Email = '" .$email. "';
             ";
 
-            $result = $conn->query($sql);
+        $result = $conn->query($sql);
 
+        if ($result->num_rows > 0)
+        {
+            while ($row = $result->fetch_assoc())
+            {
+                $cartItem = new CartBook();
+                $cartItem->CartID = $row["CartID"];
+                $cartItem->Book = new Book();
+                $cartItem->Book->BookID = $row["BookID"];
+                $cartItem->Book->Title = $row["Title"];
+                $cartItem->Book->Author = $row["Author"];
+                $cartItem->Book->Description = $row["BookDescription"];
+                $cartItem->Book->Genre = $row["Genre"];
+                $cartItem->Book->Price = $row["Price"];
+                $cartItem->Book->ImagePath = $row["ImagePath"];
+
+                array_push($books, $cartItem);
+            }
+        }
+
+        $conn->close();
+
+        return $books;
+    }
+
+    function getBooksFromOrder($orderId)
+    {
+        $books = array();
+        $conn = openConnection();
+
+        $sql = "
+        SELECT Bookstore.Books.BookID, Title, Author, BookDescription, Genre, Price, ImagePath 
+        FROM Bookstore.Books
+        INNER JOIN Bookstore.BookSales
+        ON Bookstore.Books.BookID = Bookstore.BookSales.BookID
+        WHERE Bookstore.BookSales.OrderID = $orderId
+        ";
+
+        if ($result = $conn->query($sql))
+        {
             if ($result->num_rows > 0)
             {
                 while ($row = $result->fetch_assoc())
                 {
-                    $cartItem = new CartBook();
-                    $cartItem->CartID = $row["CartID"];
-                    $cartItem->Book = new Book();
-                    $cartItem->Book->BookID = $row["BookID"];
-                    $cartItem->Book->Title = $row["Title"];
-                    $cartItem->Book->Author = $row["Author"];
-                    $cartItem->Book->Description = $row["BookDescription"];
-                    $cartItem->Book->Genre = $row["Genre"];
-                    $cartItem->Book->Price = $row["Price"];
-                    $cartItem->Book->ImagePath = $row["ImagePath"];
+                    $book = new Book();
+                    $book->BookID = $row["BookID"];
+                    $book->Title = $row["Title"];
+                    $book->Author = $row["Author"];
+                    $book->Description = $row["BookDescription"];
+                    $book->Genre = $row["Genre"];
+                    $book->Price = $row["Price"];
+                    $book->ImagePath = $row["ImagePath"];
     
-                    array_push($books, $cartItem);
+                    array_push($books, $book);
                 }
             }
-    
-            $conn->close();
-    
-            return $books;
+        }
+        else
+        {
+            echo $conn->error;
+        }
+
+        $conn->close();
+        return $books;
     }
 
     function removeBookFromCart($cartID)

@@ -17,13 +17,6 @@
         unset($_SESSION["Admin"]);
 
         $customer = $_SESSION["Customer"];
-
-        if (isset($_GET["id"]))
-        {
-            $bookID = $_GET["id"];
-            addBookToCart($customer->Email, $bookID);
-        }
-
         $books = getBooksInCart($customer->Email);
 
         echo "<div class='container' id='container'>";

@@ -1,0 +1,60 @@
+@import "layout";
+
+.title
+{
+    text-align: center;
+}
+
+#grid
+{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    gap: 10px;
+
+    flex-basis: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.book-image
+{
+    width: 15em;
+    height: 15em;
+    vertical-align: middle;
+    margin: 5px;
+    object-fit: contain;
+}
+
+.book-title
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.4em;
+}
+
+.book
+{
+    height: 22em;
+    width: 15em;
+    text-align: center;
+    padding-top: 2em;
+    transition: 350ms;
+    user-select: none;
+    border-radius: 50px;
+}
+
+.book:hover
+{
+    background-color: $navbarHoveredColor;
+    border-radius: 25px;
+}

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/admin_dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo">
-    <script type="text/javascript" src="js/main.js"></script>
+    <script defer type="text/javascript" src="js/main.js"></script>
     <link rel="icon" href="img/logo.png">
 </head>
 <body>    

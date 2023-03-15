@@ -35,7 +35,7 @@
                 if (str_contains($title, $searchText))
                 {
                     $html = "
-                    <a href='view_book.php?id=" .$book->BookID."'>
+                    <a href='view_book.php?id=" .$book->BookID."' class='hidden'>
                         <div class='book'>
                             <img src=" .$book->ImagePath. " class='book-image'>
                             <h1 class='book-title'>" .$book->Title. "</h1>

@@ -12,17 +12,11 @@
 
         foreach ($books as $book)
         {
-            /* $url = "admin_dashboard.php?action=edit&id=$book->BookID";
-            echo "<a href='$url' class='bookInfo'>";
-            $bookInfo = "$book->Title - $book->Author<br>";
-            echo "$bookInfo";
-            echo "</a>"; */
-
             $url = "admin_dashboard.php?action=edit&id=$book->BookID";
 
             $html = "
-            <a href='$url' class='bookInfo'>
-                <div class='book'>
+            <a href='$url' id='bookInfo' class='hidden'>
+                <div class='book'> 
                     <img src='$book->ImagePath' class='book-image'>
                     <h1 class='book-title'>$book->Title</h1>
                 </div>

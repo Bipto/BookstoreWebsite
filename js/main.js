@@ -93,8 +93,27 @@ document.addEventListener('DOMContentLoaded', () => {
         revisedMousePosX += (mousePosX - revisedMousePosX) / delay;
         revisedMousePosY += (mousePosY - revisedMousePosY) / delay;
 
-        mouseCircle.style.top = revisedMousePosY + 'px';
-        mouseCircle.style.left = revisedMousePosX + 'px';
+        if (mouseCircle)
+        {
+            mouseCircle.style.top = revisedMousePosY + 'px';
+            mouseCircle.style.left = revisedMousePosX + 'px';
+        }
+
     }
     delayMouseFollow();
 });
+
+const observer = new IntersectionObserver((entryies) => {
+    entryies.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+        else{
+            entry.target.classList.remove('show');
+        }
+    });
+});
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));

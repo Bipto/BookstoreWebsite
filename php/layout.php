@@ -60,13 +60,13 @@
         {
             echo '<nav>
                     <a href="sign_in.php"><h1>Sign In</h1></a>
-                  </nav>';
+                    </nav>';
         }
         else
         {
             echo '<nav>
                     <a href="account.php"><h1>Account</h1></a>
-                  </nav>';
+                    </nav>';
         }
 
         echo '</div>';

@@ -26,7 +26,7 @@
             <input type='text' id='author' name='author' class='entry' value='$author'><br>
 
             <label for='description' type='text' class='label'>Description:</label><br>
-            <input type='text' id='description' name='description' class='entry' value='$description'><br>
+            <textarea id='description' name='description' class='entry'rows='10'>$description</textarea><br>
 
             <label for='genre' type='text' class='label'>Genre:</label><br>
             <input type='text' id='genre' name='genre' class='entry' value='$genre'><br>

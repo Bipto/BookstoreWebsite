@@ -37,7 +37,7 @@
                     $html = "
                     <a href='view_book.php?id=" .$book->BookID."' class='hidden'>
                         <div class='book'>
-                            <img src=" .$book->ImagePath. " class='book-image'>
+                            <img src=" .$book->ImagePath. " class='book-image' loading='lazy'>
                             <h1 class='book-title'>" .$book->Title. "</h1>
                         </div>
                     </a>

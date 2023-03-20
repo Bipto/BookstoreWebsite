@@ -46,6 +46,15 @@
                 echo $html;
             }
             echo "</div>";
+
+            $returnButton = "
+            <div class='container'>
+                <a href='account.php'>
+                    <button type='button' class='returnButton'>Back to account</button>
+                </a>
+            </div>
+            ";
+            echo $returnButton;
         }
 
     ?>

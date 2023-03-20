@@ -14,7 +14,7 @@
             <input type='text' id='author' name='author' class='entry'><br>
 
             <label for='description' type='text' class='label'>Description:</label><br>
-            <input type='text' id='description' name='description' class='entry'><br>
+            <textarea id='description' name='description' class='entry' rows='10'></textarea><br>
 
             <label for='genre' type='text' class='label'>Genre:</label><br>
             <input type='text' id='genre' name='genre' class='entry'><br>

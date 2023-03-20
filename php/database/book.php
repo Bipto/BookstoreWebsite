@@ -8,6 +8,7 @@ class Book
     public $Description;
     public $Genre;
     public $Price;
+    public $StockCount = 0;
     public $ImagePath;
 }
 

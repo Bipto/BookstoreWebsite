@@ -55,8 +55,10 @@
             
             $order = $_SESSION["Order"];
             insertOrder($order);
-            $orderID = getMostRecentOrderID();
-            insertBooksSales($orderID, $order->Books);
+            $orderID = getMostRecentOrderID();          
+
+            insertBookSales($orderID, $order->Books);
+            reduceStockCount($order->Books);
             clearCart($order->AccountEmail);
         }
 

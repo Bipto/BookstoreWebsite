@@ -58,3 +58,16 @@
     background-color: $navbarHoveredColor;
     border-radius: 25px;
 }
+
+.returnButton
+{
+    font-size: 1.2em;
+}
+
+.container
+{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}

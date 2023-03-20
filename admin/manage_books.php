@@ -4,8 +4,7 @@
     {
         require_once "php/database/database_connections.php";
 
-        echo "<h2>Manage Books</h2>";
-        
+        echo "<h2 class='title'>Manage Books</h2>";        
         $books = getBooks();
 
         echo "<div id='grid'>";

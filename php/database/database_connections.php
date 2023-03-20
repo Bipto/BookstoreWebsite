@@ -23,10 +23,10 @@
 
     function insertBook($book, $conn)
     {
-        $stmt = $conn->prepare("INSERT INTO Bookstore.Books(Title, Author, BookDescription, Genre, Price, ImagePath)
-        VALUES(?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO Bookstore.Books(Title, Author, BookDescription, Genre, Price, StockCount, ImagePath)
+        VALUES(?, ?, ?, ?, ?, ?, ?)");
         
-        $stmt->bind_param("ssssds", $book->Title, $book->Author, $book->Description, $book->Genre, $book->Price, $book->ImagePath);
+        $stmt->bind_param("ssssdis", $book->Title, $book->Author, $book->Description, $book->Genre, $book->Price, $book->StockCount, $book->ImagePath);
 
         if ($stmt->execute() === TRUE){
             echo $book->Title. " inserted <br>";
@@ -66,11 +66,11 @@
         $conn->close();
     }
 
-    function insertBooksSales($orderID, $books)
+    function insertBookSales($orderID, $bookSales)
     {
         $conn = openConnection();
 
-        foreach ($books as $book)
+        foreach ($bookSales as $bookSale)
         {
             $sql = "
             INSERT INTO Bookstore.BookSales(BookID, OrderID)
@@ -78,10 +78,34 @@
             ";
 
             $query = $conn->prepare($sql);
-            $query->bind_param("ii", $book->Book->BookID, $orderID);
+            $query->bind_param("ii", $bookSale->Book->BookID, $orderID);
 
             if ($query->execute() === FALSE)
                 echo "Could not insert book sale: " .$conn->error;
+        }
+
+        $conn->close();
+    }
+
+    function reduceStockCount($bookSales)
+    {
+        $conn = openConnection();
+
+        foreach ($bookSales as $bookSale)
+        {
+            $newStockCount = $bookSale->Book->StockCount-1;
+
+            $sql = "
+            UPDATE Bookstore.Books
+            SET StockCount = (?)
+            WHERE BookID = (?)
+            ";
+
+            $query = $conn->prepare($sql);
+            $query->bind_param("ii", $newStockCount, $bookSale->Book->BookID);
+
+            if ($query->execute() === FALSE)
+                echo "Could not reduce stock count: " .$conn->error;
         }
 
         $conn->close();
@@ -162,7 +186,7 @@
     {
         $conn = openConnection();
         
-        $sql = "SELECT BookID, Title, Author, BookDescription, Genre, Price, ImagePath FROM Bookstore.Books WHERE BookID = ?";
+        $sql = "SELECT BookID, Title, Author, BookDescription, Genre, Price, StockCount, ImagePath FROM Bookstore.Books WHERE BookID = ?";
         $query = $conn->prepare($sql);
         $query->bind_param("i", $bookID);
         $query->execute();
@@ -179,6 +203,7 @@
             $book->Genre = $row["Genre"];
             $book->Price = $row["Price"];
             $book->ImagePath = $row["ImagePath"];
+            $book->StockCount = $row["StockCount"];
         }
 
         $conn->close();
@@ -190,7 +215,7 @@
         $conn = openConnection();
         $books = array();
         
-        $sql = "SELECT BookID, Title, Author, BookDescription, Genre, Price, ImagePath FROM Bookstore.Books";
+        $sql = "SELECT BookID, Title, Author, BookDescription, Genre, Price, StockCount, ImagePath FROM Bookstore.Books";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -205,6 +230,7 @@
                 $book->Genre = $row["Genre"];
                 $book->Price = $row["Price"];
                 $book->ImagePath = $row["ImagePath"];
+                $book->StockCount = $row["StockCount"];
 
                 array_push($books, $book);
             }
@@ -245,7 +271,8 @@
                 Bookstore.Books.BookDescription,
                 Bookstore.Books.Genre,
                 Bookstore.Books.Price,
-                Bookstore.Books.ImagePath
+                Bookstore.Books.ImagePath,
+                Bookstore.Books.StockCount
                 FROM Bookstore.Carts
             INNER JOIN Bookstore.Books ON Bookstore.Carts.BookID = Bookstore.Books.BookID
             WHERE Bookstore.Carts.Email = '" .$email. "';
@@ -267,6 +294,7 @@
                 $cartItem->Book->Genre = $row["Genre"];
                 $cartItem->Book->Price = $row["Price"];
                 $cartItem->Book->ImagePath = $row["ImagePath"];
+                $cartItem->Book->StockCount = $row["StockCount"];
 
                 array_push($books, $cartItem);
             }
@@ -283,7 +311,7 @@
         $conn = openConnection();
 
         $sql = "
-        SELECT Bookstore.Books.BookID, Title, Author, BookDescription, Genre, Price, ImagePath 
+        SELECT Bookstore.Books.BookID, Title, Author, BookDescription, Genre, Price, ImagePath, StockCount
         FROM Bookstore.Books
         INNER JOIN Bookstore.BookSales
         ON Bookstore.Books.BookID = Bookstore.BookSales.BookID
@@ -304,6 +332,7 @@
                     $book->Genre = $row["Genre"];
                     $book->Price = $row["Price"];
                     $book->ImagePath = $row["ImagePath"];
+                    $book->StockCount = $row["StockCount"];
     
                     array_push($books, $book);
                 }

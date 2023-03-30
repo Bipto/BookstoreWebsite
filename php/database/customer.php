@@ -15,13 +15,4 @@ class Customer{
     public $Password;
 }
 
-function login()
-{
-    $customer = new Customer();
-    $customer->FirstName = "Adam";
-    $customer->Surname = "Beardow";
-
-    $_SESSION["Customer"] = $customer;
-}
-
 ?>

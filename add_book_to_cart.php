@@ -10,6 +10,7 @@ $customer = $_SESSION["Customer"];
 if (isset($_GET["id"]))
 {
     $bookId = $_GET["id"];
+    $book = getBookById($bookId);
     addBookToCart($customer->Email, $bookId);
 }
 

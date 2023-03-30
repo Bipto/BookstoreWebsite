@@ -87,7 +87,7 @@
         $conn->close();
     }
 
-    function reduceStockCount($bookSales)
+    function reduceOrderStockCount($bookSales)
     {
         $conn = openConnection();
 
@@ -109,6 +109,101 @@
         }
 
         $conn->close();
+    }
+
+    function reduceIndividualStockCount($book)
+    {
+        echo "reducing stock count";
+        $conn = openConnection();
+
+        $newStockCount = $book->StockCount-1;
+
+        $sql = "
+        UPDATE Bookstore.Books
+        SET StockCount = (?)
+        WHERE BookID = (?)        
+        ";
+
+        $query = $conn->prepare($sql);
+        $query->bind_param("ii", $newStockCount, $book->BookID);
+
+        if ($query->execute() === FALSE)
+            echo "Could not reduce stock count: " .$conn->error;
+
+        $conn->close();
+    }
+
+    function increaseIndividualStockCount($book)
+    {
+        $conn = openConnection();
+
+        $newStockCount = $book->StockCount+1;
+
+        $sql = "
+        UPDATE Bookstore.Books
+        SET StockCount = (?)
+        WHERE BookID = (?)        
+        ";
+
+        $query = $conn->prepare($sql);
+        $query->bind_param("ii", $newStockCount, $book->BookID);
+
+        if ($query->execute() === FALSE)
+            echo "Could not reduce stock count: " .$conn->error;
+
+        $conn->close();
+    }
+
+    function updateCustomerDetails($customer)
+    {
+        $conn = openConnection();
+
+        $sql = "
+        UPDATE Bookstore.Customers
+        SET
+            Title = '$customer->Title',
+            FirstName = '$customer->FirstName',
+            Surname = '$customer->Surname',
+            DateOfBirth = '$customer->DateOfBirth',
+            HouseNumber = '$customer->HouseNumber',
+            Street = '$customer->Street',
+            Town = '$customer->Town',
+            County = '$customer->County',
+            Country = '$customer->Country',
+            PostCode = '$customer->PostCode' 
+        WHERE Email = '$customer->Email'";
+
+        if ($conn->query($sql) !== TRUE)
+        {
+            die("Error updating customer: " . $conn->error);
+            return false;
+        }
+        
+        $conn->close();
+        return true;
+    }
+
+    function updateCustomerPassword($customer, $password)
+    {
+        $conn = openConnection();;
+
+        $hashedPassword = password_hash($customer->Password, PASSWORD_DEFAULT);
+
+        $sql = "
+        UPDATE Bookstore.Customers
+        SET
+            Password = '$hashedPassword'
+        WHERE Email = '$customer->Email'
+        ";
+
+        if ($conn->query($sql) !== TRUE)
+        {
+            die ("Error updating password: " . $conn->error);
+            return false;
+        }
+
+        $conn->close();
+        return true;
     }
 
     function clearCart($email)
@@ -204,10 +299,30 @@
             $book->Price = $row["Price"];
             $book->ImagePath = $row["ImagePath"];
             $book->StockCount = $row["StockCount"];
+            return $book;
         }
 
         $conn->close();
-        return $book;
+        return null;
+    }
+
+    function getBookByCartID($cartID)
+    {
+        $conn = openConnection();
+
+        $sql = "SELECT BookID FROM Bookstore.Carts WHERE CartID = ($cartID)";
+        $result = $conn->query($sql);
+        
+        if($result->num_rows > 0)
+        {
+            $row = $result->fetch_assoc();
+            $bookId = $row["BookID"];
+            return getBookById($bookId);
+        }
+
+        $conn->close();
+
+        return null;
     }
 
     function getBooks()

@@ -17,36 +17,44 @@
         createHeader();
         $id = $_GET["id"];
         $selectedBook = getBookById($id);
-
-        $bookInfo = "
-        <div class='book'>
-            <img src=" .$selectedBook->ImagePath. " class='book-image'>
-            <h2>" .$selectedBook->Title. " - " .$selectedBook->Author.  "</h2>
-            <h3>" .$selectedBook->Genre. "</h3>
-            <h3> £" .$selectedBook->Price. "</h3>
-            <div class='description'>" .$selectedBook->Description. "</div>
-        </div>
-        ";
-
-        echo $bookInfo;
-
-        if (isset($_SESSION["Customer"]))
+        if (is_null($selectedBook))
         {
-            echo "<a href='add_book_to_cart.php?id=".$selectedBook->BookID."'>
-                <button type='button' class='button'>Add to cart</button>
-            </a>";
+            echo "<h3>Book could not be found in database!</h3>";
         }
         else
         {
-            echo "<a href='sign_in.php'>
-                <button type='button' class='button'>Add to cart</button>
-            </a>";
-        }
-    ?>
+            $bookInfo = "
+            <div class='book'>
+                <img src=" .$selectedBook->ImagePath. " class='book-image'>
+                <h2>" .$selectedBook->Title. " - " .$selectedBook->Author.  "</h2>
+                <h3>" .$selectedBook->Genre. "</h3>
+                <h3> £" .$selectedBook->Price. "</h3>
+                <div class='description'>" .$selectedBook->Description. "</div>
+                <h3> In-stock: $selectedBook->StockCount </h3>
+            </div>
+            ";
 
-    <!-- <a href="cart.php?id=".$book->BookID."">
-        <button type="button" class="button">Add to cart</button>
-    </a> -->
+            echo $bookInfo;
+
+            if ($selectedBook->StockCount > 0)
+            {
+                if (isset($_SESSION["Customer"]))
+                {
+                    echo "<a href='add_book_to_cart.php?id=".$selectedBook->BookID."'>
+                        <button type='button' class='button'>Add to cart</button>
+                    </a>";
+                }
+                else
+                {
+                    echo "<a href='sign_in.php'>
+                        <button type='button' class='button'>Add to cart</button>
+                    </a>";
+                }
+            }
+        }
+
+        
+    ?>
 
 </body>
 </html>

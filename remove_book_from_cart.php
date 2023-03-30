@@ -4,6 +4,10 @@
     
     session_start();
     $cartID = $_REQUEST["id"];
+
+    $book = getBookByCartID($cartID);
+    increaseIndividualStockCount($book);
+
     removeBookFromCart($cartID);
     header('Location: cart.php');
 ?>

@@ -37,16 +37,15 @@
 
             $html = "
                 <div class='item'>
-                    <img src= '{$book->Book->ImagePath}' class='book-image'>
+                    <a href='view_book.php?id={$book->Book->BookID}'>    
+                        <img src= '{$book->Book->ImagePath}' class='book-image'>
+                    </a>
                     <h4 class='book-info'> {$book->Book->Title} </h4>
                     <h4 class='book-info'> £$bookPrice </h4>
                     <input type='button' value='Remove' class='remove-button' onclick='removeBookFromCart($book->CartID)'>
                 </div>
             ";
             echo $html;
-
-            echo"";
-
             $orderTotal += $book->Book->Price;
         }
 
@@ -65,7 +64,7 @@
                 </div>
             ";
     
-            echo $checkoutButton;
+            echo $checkoutButton;            
         }
     ?>
 

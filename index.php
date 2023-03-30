@@ -14,11 +14,11 @@
         require_once "php/database/database_connections.php";
         require_once "php/database/book.php";
     
-        function createSearchbar(){
+        function createSearchbar($text){
             $html = "
                 <div class='searchbar'>
                     <form class=>
-                        <input type='text' id='searchtext'>
+                        <input type='text' id='searchtext' value='$text'>
                         <input type='submit' id='searchButton' value='Search' onClick='searchBooks()'>
                     </form>
                 </div>";
@@ -35,7 +35,7 @@
                 if (str_contains($title, $searchText))
                 {
                     $html = "
-                    <a href='view_book.php?id=" .$book->BookID."' class='hidden'>
+                    <a href='view_book.php?id=" .$book->BookID."'>
                         <div class='book'>
                             <img src=" .$book->ImagePath. " class='book-image' loading='lazy'>
                             <h1 class='book-title'>" .$book->Title. "</h1>
@@ -48,14 +48,14 @@
             }
         }
 
-        createHeader();  
-        createSearchbar();
-                
         $searchText = "";
         if (!empty($_REQUEST["name"]))
         {
             $searchText = $_REQUEST["name"];
         }
+
+        createHeader();  
+        createSearchbar($searchText);            
 
         $books = getBooks();
 

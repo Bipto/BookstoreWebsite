@@ -14,7 +14,7 @@
             $url = "admin_dashboard.php?action=edit&id=$book->BookID";
 
             $html = "
-            <a href='$url' id='bookInfo' class='hidden'>
+            <a href='$url' id='bookInfo'>
                 <div class='book'> 
                     <img src='$book->ImagePath' class='book-image'>
                     <h1 class='book-title'>$book->Title</h1>

@@ -20,7 +20,7 @@
         if (isset($_SESSION["Customer"]))
         {
             $customer = $_SESSION["Customer"];
-            echo "<h2>" .$customer->Email. "</h2>";
+            echo "<h2>".$customer->FirstName. " " .$customer->Surname. " - " .$customer->Email."</h2>";
 
             $orders = getOrdersFromEmail($customer->Email);
 
@@ -40,6 +40,12 @@
             }
 
             $html = "
+            <a href='update_details.php'>
+                <button class='update-details'>Update Details</button>
+            </a><br>
+            <a href='change_password.php'>
+                <button class='change_password'>Change Password</button>
+            </a><br>
             <a href='sign_out.php'>
                 <button class='sign-out'>Sign Out</button>
             </a>";

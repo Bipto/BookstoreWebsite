@@ -58,7 +58,7 @@
             $orderID = getMostRecentOrderID();          
 
             insertBookSales($orderID, $order->Books);
-            reduceStockCount($order->Books);
+            reduceOrderStockCount($order->Books);
             clearCart($order->AccountEmail);
         }
 

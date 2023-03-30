@@ -537,7 +537,7 @@
     createOrdersTable($conn);
     createBookSalesTable($conn);
     createCartTable($conn);
-    createBlogPostTable($conn);
+    //createBlogPostTable($conn);
 
     createBooks($conn);
     createDefaultAdmin($conn);

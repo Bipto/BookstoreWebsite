@@ -10,11 +10,21 @@
 .label
 {
     width: 100%;
+    text-align: left;
+    justify-content: left;
 }
 
 .entry
 {
     width: 100%;
+    font-size: 0.8em;
+    border-radius: 5px;
+}
+
+.button
+{
+    font-size: 0.8em;
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 1000px)

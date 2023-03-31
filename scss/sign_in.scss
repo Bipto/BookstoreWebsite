@@ -1,5 +1,10 @@
 @import "layout";
 
+*
+{
+    border-radius: 5px;
+}
+
 .title
 {
     text-align: center;
@@ -13,21 +18,18 @@
     margin-top: 5px;
     margin-left: auto;
     display: grid;
-    border-radius: 5px;
 }
 
 #createAccount
 {
     text-align: center;
     font-size: 1.2em;
-    border-radius: 5px;
 }
 
 #adminSignIn
 {
     text-align: center;
     font-size: 1.2em;
-    border-radius: 5px;
 }
 
 #email
@@ -35,7 +37,6 @@
     width: 100%;
     font-size: 1.2em;
     margin-top: 5px;
-    border-radius: 5px;
 }
 
 #password
@@ -43,7 +44,6 @@
     width: 100%;
     font-size: 1.2em;
     margin-top: 5px;
-    border-radius: 5px;
 }
 
  @media only screen and (max-width: 1000px)

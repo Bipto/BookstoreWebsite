@@ -16,21 +16,22 @@
 
         createHeader();
 
-        echo "<h2>Update Details</h2>";
-
         $html = 
         '
-        <form action="update_password_in_database.php" method="post" class="form">
-            <label for="password" class="label">Password:</label><br>
-            <input type="password" id="password" name="password" class="entry">
-            <br><br>
+        <div class="content">
+            <form action="update_password_in_database.php" method="post" class="form">
+                <h2>Change Password</h2>
+                <label for="password" class="label">Password:</label><br>
+                <input type="password" id="password" name="password" class="entry">
+                <br><br>
 
-            <label for="confirmPassword" class="label">Confirm Password:</label><br>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="entry">
-            <br><br>
+                <label for="confirmPassword" class="label">Confirm Password:</label><br>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="entry">
+                <br><br>
 
-            <input type="submit" value="Submit" class="submitButton">
-        </form>
+                <input type="submit" value="Submit" class="button">
+            </form>
+        </div>
         ';
         echo $html;
     ?>

@@ -25,7 +25,7 @@
         <br><br>
         
         <label for="title" class="label">Title:</label><br>
-        <select name="title" id="title" class="combo">
+        <select name="title" id="title" class="entry">
             <option value="Mr">Mr</option>
             <option value="Miss">Miss</option>
             <option value="Mrs">Mrs</option>

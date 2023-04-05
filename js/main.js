@@ -3,8 +3,7 @@ function searchBooks()
 {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
-        //document.getElementById("grid").outerHTML= this.responseText;
-        document.body.parentNode.innerHTML = this.responseText;
+        document.body.innerHTML = this.responseText;
 
     }
     

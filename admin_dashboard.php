@@ -48,23 +48,32 @@
                 if (!isset($_SESSION["Admin"]))
                 {
                     die("Not logged in as an administrator!");
-                }
+                }            
 
-                $action = $_GET["action"];
-                if ($action === "manage")
-                    createManageBooksScreen();
-                else if ($action === "add")
-                    createAddBookScreen();
-                else if ($action === "remove")
-                    createRemoveBookScreen();
-                else if ($action === "edit")
-                    createEditBooksScreen();
-                else if ($action === "updated")
-                    createBookUpdatedScreen();
-                else if ($action === "inserted")
-                    createBookInsertedScreen();
-                else
-                    echo "Invalid action entered!";                    
+                $searchText = "";
+                if (isset($_GET["name"]))
+                {
+                    $searchText = $_GET["name"];
+                }
+                
+                if (isset($_GET["action"]))
+                {
+                    $action = $_GET["action"];
+                    if ($action === "manage")
+                        createManageBooksScreen($searchText);
+                    else if ($action === "add")
+                        createAddBookScreen();
+                    else if ($action === "remove")
+                        createRemoveBookScreen();
+                    else if ($action === "edit")
+                        createEditBooksScreen();
+                    else if ($action === "updated")
+                        createBookUpdatedScreen();
+                    else if ($action === "inserted")
+                        createBookInsertedScreen();
+                    else
+                        echo "Invalid action entered!";   
+                }                
             ?> 
         </div>
     </div>

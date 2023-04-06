@@ -67,7 +67,7 @@ body
 {
     background-color: $navbarHoveredColor;
     border-radius: 25px;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .titlebar
@@ -132,6 +132,54 @@ textarea
     border-radius: 5px;
     border-width: 2px;
     padding: 2px;
+}
+
+.searchbar
+{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#searchtext
+{
+    width: 15em;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+#searchButton
+{
+    font-size: 1.2em;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.tooltip
+{
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.book .tooltiptext
+{
+    visibility: hidden;
+    width: 180px;
+    background-color: 10px;
+    background-color: $titlebarColor;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.book:hover .tooltiptext
+{
+    visibility: visible;
+    transition-delay: 0.5s;
 }
 
 @media only screen and (min-width: 1000px)

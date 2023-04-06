@@ -21,8 +21,10 @@
         return $conn;
     }
 
-    function insertBook($book, $conn)
+    function insertBook($book)
     {
+        $conn = openConnection();
+
         $stmt = $conn->prepare("INSERT INTO Bookstore.Books(Title, Author, BookDescription, Genre, Price, StockCount, ImagePath)
         VALUES(?, ?, ?, ?, ?, ?, ?)");
         
@@ -34,6 +36,8 @@
         else{
             echo "Data could not be inserted: " . $conn->error;
         }
+
+        $conn->close();
     }
 
     function insertAdmin($admin, $conn)
@@ -48,6 +52,36 @@
             echo "Default admin created successfully";
         else
             echo "Default admin could not be created: " . $conn->error;
+    }
+
+    function insertCustomer($customer)
+    {
+        $conn = openConnection();
+
+        $sql = 
+        "
+            INSERT INTO Bookstore.Customers(Email, Title, FirstName, Surname, DateOfBirth, HouseNumber, Street, Town, County, Country, PostCode, Password)
+            VALUES (
+                '$customer->Email',
+                '$customer->Title',
+                '$customer->FirstName',
+                '$customer->Surname',
+                '$customer->DateOfBirth',
+                '$customer->HouseNumber',
+                '$customer->Street',
+                '$customer->Town',
+                '$customer->County',
+                '$customer->Country',
+                '$customer->PostCode',
+                '$customer->Password');
+        ";
+
+        if ($conn->query($sql) === TRUE)
+                return "Customer created successfully";
+        else
+                return "Customer could not be created: " . $conn->error;
+
+        $conn->close();
     }
 
     function insertOrder($order)
@@ -183,11 +217,11 @@
         return true;
     }
 
-    function updateCustomerPassword($customer, $password)
+    function updateCustomerPassword($customer, $newPassword)
     {
-        $conn = openConnection();;
+        $conn = openConnection();
 
-        $hashedPassword = password_hash($customer->Password, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
         $sql = "
         UPDATE Bookstore.Customers
@@ -322,6 +356,79 @@
 
         $conn->close();
 
+        return null;
+    }
+
+    function getAdminFromDetails($email, $password)
+    {
+        $conn = openConnection();
+
+        $sql = "SELECT * FROM Bookstore.Administrators WHERE Email = ?";
+        $query = $conn->prepare($sql);
+        $query->bind_param("s", $email);
+        $query->execute();
+
+        $result = $query->get_result();
+        if ($result->num_rows > 0)
+        {
+            $row = $result->fetch_assoc();
+            $hashedPassword = $row["Password"];
+
+            if (password_verify($password, $hashedPassword))
+            {
+                $admin = new Admin();
+                $admin->Email = $row["Email"];
+                $admin->FirstName = $row["FirstName"];
+                $admin->Surname = $row["Surname"];
+                $admin->DateOfBirth = $row["DateOfBirth"];
+                $admin->HouseNumber = $row["HouseNumber"];
+                $admin->Street = $row["Street"];
+                $admin->Town = $row["Town"];
+                $admin->County = $row["County"];
+                $admin->Country = $row["Country"];
+                $admin->PostCode = $row["PostCode"];
+                return $admin;
+            }
+        }
+
+        $conn->close();
+
+        return null;
+    }
+
+    function getCustomerFromDetails($email, $password)
+    {
+        $conn = openConnection();
+
+        $sql = "SELECT * FROM Bookstore.Customers WHERE Email = ?";
+        $query = $conn->prepare($sql);
+        $query->bind_param("s", $email);
+        $query->execute();
+
+        $result = $query->get_result();
+        if ($result->num_rows > 0)
+        {
+            $row = $result->fetch_assoc();
+            $hashedPassword = $row["Password"];
+
+            if (password_verify($password, $hashedPassword))
+            {
+                $customer = new Customer();
+                $customer->Email = $row["Email"];
+                $customer->FirstName = $row["FirstName"];
+                $customer->Surname = $row["Surname"];
+                $customer->DateOfBirth = $row["DateOfBirth"];
+                $customer->HouseNumber = $row["HouseNumber"];
+                $customer->Street = $row["Street"];
+                $customer->Town = $row["Town"];
+                $customer->County = $row["County"];
+                $customer->Country = $row["Country"];
+                $customer->PostCode = $row["PostCode"];
+                return $customer;
+            }
+        }
+
+        $conn->close();
         return null;
     }
 
@@ -525,6 +632,35 @@
             echo "Book could not be removed from database: " .$conn->error;     
 
         $conn->close();
+    }
+
+    function createNewCustomer($customer)
+    {
+        $conn = openConnection();
+
+        $sql = "
+        INSERT INTO Bookstore.Customers(Email, Title, FirstName, Surname, DateOfBirth, HouseNumber, Street, Town, County, Country, PostCode, Password)
+        VALUES(
+            '$customer->Email',
+            '$customer->Title',
+            '$customer->FirstName',
+            '$customer->Surname',
+            '$customer->DateOfBirth',
+            '$customer->HouseNumber',
+            '$customer->Street',
+            '$customer->Town',
+            '$customer->County',
+            '$customer->Country',
+            '$customer->PostCode',
+            '$customer->Password'
+        )
+        ";
+
+        if ($conn->query($sql) === TRUE)
+            return true;
+
+        $conn->close();
+        return false;
     }
 
 ?>

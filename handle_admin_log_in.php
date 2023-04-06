@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logged In</title>
-    <link rel="stylesheet" href="css/handle_log_in.css">
+    <link rel="stylesheet" href="css/handle_admin_log_in.css">
     <link rel="icon" href="img/logo.png">
 </head>
 <body>
@@ -17,56 +17,29 @@
 
         createHeader();
 
-        echo "<h2 class='content'>";
+        echo "<div class='content'>";
 
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $conn = openConnection();
-
-        $sql = 'SELECT * FROM Bookstore.Administrators WHERE Email = ?';
-        $query = $conn->prepare($sql);
-        $query->bind_param("s", $email);
-        $query->execute();
-        
-        $result = $query->get_result();
-        if ($result->num_rows > 0)
+        $admin = getAdminFromDetails($email, $password);
+        if (!is_null($admin))
         {
-            $row = $result->fetch_assoc();
-            $hashedPassword = $row["Password"];
-
-            if (password_verify($password, $hashedPassword))
-            {
-                $admin = new Admin();
-                $admin->Email = $row["Email"];
-                $admin->FirstName = $row["FirstName"];
-                $admin->Surname = $row["Surname"];
-                $admin->DateOfBirth = $row["DateOfBirth"];
-                $admin->HouseNumber = $row["HouseNumber"];
-                $admin->Street = $row["Street"];
-                $admin->Town = $row["Town"];
-                $admin->County = $row["County"];
-                $admin->Country = $row["Country"];
-                $admin->PostCode = $row["PostCode"];
-
-                $_SESSION["Admin"] = $admin;
-
-                header('Location: admin_dashboard.php?action=manage');
-                exit();
-            }
-            else
-            {
-                echo "Login failed: Invalid email or password";
-            }
+            $_SESSION["Admin"] = $admin;
+            header('Location: admin_dashboard.php?action=manage');
         }
         else
         {
-            echo "Login failed: Invalid email or password";
+            $errorHtml = "
+                <h2>Login failed: Invalid email or password!</h2>
+                <form action='admin_sign_in.php' method='get' class='form'>
+                    <button type='submit'>Try again</button>
+                </form>
+            ";
+            echo $errorHtml;
         }
 
-        $conn->close();
-
-        echo "</h2>";
+        echo "</div>";
     ?>
 
 </body>

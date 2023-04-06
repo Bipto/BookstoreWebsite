@@ -1,5 +1,5 @@
 //index page
-function searchBooks()
+function searchBooksHome()
 {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
@@ -14,7 +14,22 @@ function searchBooks()
     xhttp.send();
 }
 
-//layout
+function searchBooksAdmin()
+{
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+        document.body.innerHTML = this.responseText;
+
+    }
+    
+    const searchText = document.getElementById("searchtext").value;
+    const filePath = 'admin_dashboard.php?action=manage&name=' + searchText;
+
+    xhttp.open("GET", filePath, false);
+    xhttp.send();
+}
+
+//toggle mobile navigation
 function toggleDropdownMenu()
 {
     var x = document.getElementById("navbar");
@@ -28,6 +43,7 @@ function toggleDropdownMenu()
     }
 }
 
+//toggle mobile navigation on admin dashboard
 function toggleAdminDropdownMenu()
 {
     var nav = document.getElementById("navigation");

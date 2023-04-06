@@ -19,15 +19,31 @@
         $password = $_POST["password"];
         $confirmPassword = $_POST["confirmPassword"];
 
+        echo "<div class='container'>";
         if ($password === $confirmPassword)
         {
             if (isset($_SESSION["Customer"]))
             {
                 $customer = $_SESSION["Customer"];
+
                 if (updateCustomerPassword($customer, $password))
                     echo "<h2>Password updated successfully.</h2>";
+                else
+                    echo "<h2>Password could not be updated.</h2>";
             }
         }
+        else
+        {
+            $html = 
+            "
+                <h2>Passwords do not match!</h2>
+                <form action='change_password.php' method='get' class='form'>
+                    <button type='submit'>Try again</button>
+                </form>
+            ";
+            echo $html;
+        }
+        echo "</div>";
 
     ?>
 </body>

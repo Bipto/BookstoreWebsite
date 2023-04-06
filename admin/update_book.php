@@ -22,10 +22,7 @@
         $book->ImagePath = $imagePath;
 
         echo "<h2>Updating Book</h2>";
-
-        $conn = openConnection();
         updateBook($book);
-        $conn->close();
     }
 
 ?>

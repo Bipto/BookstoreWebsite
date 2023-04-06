@@ -14,21 +14,22 @@
         require_once "php/database/database_connections.php";
         require_once "php/database/book.php";
     
-        function createSearchbar($text){
+        function createSearchbar($text)
+        {
             $html = "
                 <div class='searchbar'>
-                    <form class=>
+                    <form>
                         <input type='text' id='searchtext' value='$text'>
-                        <input type='submit' id='searchButton' value='Search' onClick='searchBooks()'>
+                        <input type='submit' id='searchButton' value='Search' onClick='searchBooksHome()'>
                     </form>
                 </div>";
             echo $html;
         }
         
-        function createBookGrid($books, $searchText){
-
-            foreach ($books as $book){
-    
+        function createBookGrid($books, $searchText)
+        {
+            foreach ($books as $book)
+            {
                 $title = strtolower($book->Title);
                 $searchText = strtolower($searchText);
     
@@ -39,6 +40,7 @@
                         <div class='book'>
                             <img src=" .$book->ImagePath. " class='book-image' loading='lazy'>
                             <h1 class='book-title'>" .$book->Title. "</h1>
+                            <span class='tooltiptext'>$book->Title</span>
                         </div>
                     </a>
                     ";

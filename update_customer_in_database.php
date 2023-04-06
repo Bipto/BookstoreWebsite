@@ -16,35 +16,27 @@
 
         createHeader();
 
-        $firstName = $_POST["fname"];
-        $title = $_POST["title"];
-        $fname = $_POST["fname"];
-        $sname = $_POST["sname"];
-        $dob = $_POST["dob"];
-        $houseNum = $_POST["houseNum"];
-        $street = $_POST["street"];
-        $town = $_POST["town"];
-        $county = $_POST["county"];
-        $country = $_POST["country"];
-        $postCode = $_POST["postCode"];
-
-        $conn = openConnection();
         $customer = $_SESSION["Customer"];
-        $customer->Title = $title;
-        $customer->FirstName = $fname;
-        $customer->Surname = $sname;
-        $customer->DateOfBirth = $dob;
-        $customer->HouseNumber = $houseNum;
-        $customer->Street = $street;
-        $customer->Town = $town;
-        $customer->County = $county;
-        $customer->Country = $country;
-        $customer->PostCode = $postCode;
+        $customer->Title = $_POST["title"];
+        $customer->FirstName = $_POST["fname"];
+        $customer->Surname = $_POST["sname"];
+        $customer->DateOfBirth = $_POST["dob"];
+        $customer->HouseNumber = $_POST["houseNum"];
+        $customer->Street = $_POST["street"];
+        $customer->Town = $_POST["town"];
+        $customer->County = $_POST["county"];
+        $customer->Country = $_POST["country"];
+        $customer->PostCode = $_POST["postCode"];
 
         if (updateCustomerDetails($customer))
         {
             $_SESSION["Customer"] = $customer;
-            echo "<h2>Customer details updated successfully.</h2>";
+            $html = "
+                <div class='container'>
+                    <h2>Customer details updated successfully.</h2>
+                </div>
+            ";
+            echo $html;        
         }
 
     ?>

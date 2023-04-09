@@ -19,7 +19,7 @@
         if (strlen($book->Title) > 0 &&
             strlen($book->Author) > 0 &&
             strlen($book->Genre) > 0 &&
-            strlen($book->Description))
+            strlen($book->Description) > 0)
         {
             insertBook($book);
         }

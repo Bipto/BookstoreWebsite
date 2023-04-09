@@ -22,7 +22,18 @@
         $book->ImagePath = $imagePath;
 
         echo "<h2>Updating Book</h2>";
-        updateBook($book);
+
+        if (strlen($book->Title > 0) &&
+            strlen($book->Author > 0) &&
+            strlen($book->Genre > 0) &&
+            strlen($book->Description) > 0)
+        {
+            updateBook($book);
+        }
+        else
+        {
+            echo "Please try again. Some inputs were left empty.";
+        }
     }
 
 ?>

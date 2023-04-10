@@ -4,9 +4,9 @@
     {
         $html = "
                 <div class='searchbar'>
-                    <form>
-                        <input type='text' id='searchtext' value=''>
-                        <input type='submit' id='searchButton' value='Search' onClick='searchBooksAdmin()'>
+                    <form action='admin_dashboard.php?action=manage' method='post'>
+                        <input type='text' id='searchtext' name='searchtext' value='$text'>
+                        <input type='submit' id='searchButton' value='Search'>
                     </form>
                 </div>";
         echo $html;

@@ -1,5 +1,5 @@
 //index page
-function searchBooksHome()
+function searchBooksHome(searchText)
 {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
@@ -7,10 +7,9 @@ function searchBooksHome()
 
     }
     
-    const searchText = document.getElementById("searchtext").value;
     const filePath = 'index.php?name=' + searchText;
 
-    xhttp.open("GET", filePath, false);
+    xhttp.open("GET", filePath);
     xhttp.send();
 }
 
@@ -85,35 +84,3 @@ function removeBookFromDatabase(id)
         location.href = "admin_dashboard.php?action=remove&id=" + id;
     }
 }
-
-//cursor follow
-document.addEventListener('DOMContentLoaded', () => {
-    let mousePosX = 0,
-        mousePosY = 0,
-        mouseCircle = document.getElementById('mouse-circle');
-
-    document.onmousemove = (e) => {
-        mousePosX = e.pageX;
-        mousePosY = e.pageY;
-    }
-
-    let delay = 6,
-        revisedMousePosX = 0,
-        revisedMousePosY = 0;
-
-    function delayMouseFollow()
-    {
-        requestAnimationFrame(delayMouseFollow);
-
-        revisedMousePosX += (mousePosX - revisedMousePosX) / delay;
-        revisedMousePosY += (mousePosY - revisedMousePosY) / delay;
-
-        if (mouseCircle)
-        {
-            mouseCircle.style.top = revisedMousePosY + 'px';
-            mouseCircle.style.left = revisedMousePosX + 'px';
-        }
-
-    }
-    delayMouseFollow();
-});

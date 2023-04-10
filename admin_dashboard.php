@@ -51,9 +51,9 @@
                 }            
 
                 $searchText = "";
-                if (isset($_GET["name"]))
+                if (isset($_POST["searchtext"]))
                 {
-                    $searchText = $_GET["name"];
+                    $searchText = $_POST["searchtext"];
                 }
                 
                 if (isset($_GET["action"]))

@@ -18,9 +18,9 @@
         {
             $html = "
                 <div class='searchbar'>
-                    <form>
-                        <input type='text' id='searchtext' value='$text'>
-                        <input type='submit' id='searchButton' value='Search' onClick='searchBooksHome()'>
+                    <form action='index.php' method='post'>
+                        <input type='text' id='searchtext' name='searchtext' value='$text'>
+                        <input type='submit' id='searchButton' value='Search'>
                     </form>
                 </div>";
             echo $html;
@@ -51,16 +51,15 @@
         }
 
         $searchText = "";
-        if (!empty($_REQUEST["name"]))
+        if (!empty($_POST["searchtext"]))
         {
-            $searchText = $_REQUEST["name"];
+            $searchText = $_POST["searchtext"];
         }
 
         createHeader();  
-        createSearchbar($searchText);            
+        createSearchbar($searchText);         
 
         $books = getBooks();
-
         echo "<div id='grid'>";
         createBookGrid($books, $searchText);
         echo "</div>";

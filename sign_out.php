@@ -13,7 +13,7 @@
 
 
         require_once "php/layout.php";
-        createHeader();
+        createNavigation();
 
         header('Location: index.php');
         session_unset();

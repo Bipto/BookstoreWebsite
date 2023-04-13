@@ -6,7 +6,7 @@
     $cartID = $_REQUEST["id"];
 
     $book = getBookByCartID($cartID);
-    increaseIndividualStockCount($book);
+    increaseStockCount($book);
 
     removeBookFromCart($cartID);
     header('Location: cart.php');

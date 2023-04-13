@@ -3,8 +3,14 @@
     require_once "database_connections.php";
     require_once "administrator.php";
 
-    function createDatabase($conn)
+    ///--------------------------------------------------------
+    ///                 CREATE A NEW DATABASE
+    ///--------------------------------------------------------
+
+    function createDatabase()
     {
+        $conn = openConnection();
+
         //create database statement
         $sql = "CREATE DATABASE Bookstore";
 
@@ -19,9 +25,18 @@
         }
 
         echo "<br>";
+
+        $conn->close();
     }
 
-    function createBooksTable($conn){
+    ///--------------------------------------------------------
+    ///                 CREATE BOOKS TABLE
+    ///--------------------------------------------------------
+
+    function createBooksTable()
+    {
+        $conn = openConnection();
+
         $create_books_sql = "CREATE TABLE Bookstore.Books(
             BookID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
             Title VARCHAR(50) NOT NULL,
@@ -41,9 +56,18 @@
         }
 
         echo "<br>";
+
+        $conn->close();
     }
 
-    function createAdminTable($conn){
+    ///--------------------------------------------------------
+    ///                 CREATE ADMIN TABLE
+    ///--------------------------------------------------------
+
+    function createAdminTable()
+    {
+        $conn = openConnection();
+
         $create_administrators_sql = "CREATE TABLE Bookstore.Administrators(
             Email VARCHAR(50) PRIMARY KEY NOT NULL,
             Title VARCHAR(10) NOT NULL,      
@@ -59,7 +83,8 @@
             Password VARCHAR(255) NOT NULL
             )";
     
-        if ($conn->query($create_administrators_sql) === TRUE){
+        if ($conn->query($create_administrators_sql) === TRUE)
+        {
             echo "Table Administrators created successfully";
         }
         else{
@@ -67,9 +92,18 @@
         }
 
         echo "<br>";    
+
+        $conn->close();
     }
 
-    function createCustomerTable($conn){
+    ///--------------------------------------------------------
+    ///                 CREATE CUSTOMER TABLE
+    ///--------------------------------------------------------
+
+    function createCustomerTable()
+    {
+        $conn = openConnection();
+
         $create_customers_sql = "CREATE TABLE Bookstore.Customers(
             Email VARCHAR(50) PRIMARY KEY NOT NULL,
             Title VARCHAR(10) NOT NULL,
@@ -93,9 +127,18 @@
         }
 
         echo "<br>";
+
+        $conn->close();
     }
 
-    function createOrdersTable($conn){
+    ///--------------------------------------------------------
+    ///               CREATE ORDERS TABLE
+    ///--------------------------------------------------------
+
+    function createOrdersTable()
+    {
+        $conn = openConnection();
+
         $create_orders_sql = "CREATE TABLE Bookstore.Orders(
             OrderID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
             AccountEmail VARCHAR(50) NOT  NULL,
@@ -118,9 +161,18 @@
         }
 
         echo "<br>";
+
+        $conn->close();
     }
     
-    function createBookSalesTable($conn){
+    ///--------------------------------------------------------
+    ///               CREATE BOOKSALES TABLE
+    ///--------------------------------------------------------
+
+    function createBookSalesTable()
+    {
+        $conn = openConnection();
+
         $create_book_sales_sql = "CREATE TABLE Bookstore.BookSales(
             BookSaleID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
             BookID INT UNSIGNED NOT NULL,
@@ -137,9 +189,18 @@
         }
 
         echo "<br>";
+
+        $conn->close();
     }
 
-    function createCartTable($conn){
+    ///--------------------------------------------------------
+    ///                 CREATE CART TABLE
+    ///--------------------------------------------------------
+
+    function createCartTable()
+    {
+        $conn = openConnection(); 
+
         $create_cart_sql = "CREATE TABLE Bookstore.Carts(
             CartID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
             Email VARCHAR(50) NOT NULL,
@@ -148,33 +209,23 @@
             FOREIGN KEY(BookID) REFERENCES Bookstore.Books(BookID)
             )";
 
-            if ($conn->query($create_cart_sql) === TRUE){
-                echo "Table Carts create successfully";
-            }
-            else{
-                echo "Error creating table (Carts): " .$conn->error;
-            }
+        if ($conn->query($create_cart_sql) === TRUE){
+            echo "Table Carts create successfully";
+        }
+        else{
+            echo "Error creating table (Carts): " .$conn->error;
+        }
 
-            echo "<br>";
+        echo "<br>";
+
+        $conn->close();
     }
 
-    function createBlogPostTable($conn){
-        $create_blog_sql = "CREATE TABLE Bookstore.BlogPosts(
-            BlogPostID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-            Email VARCHAR(50) NOT NULL,
-            FOREIGN KEY (Email) REFERENCES Bookstore.Customers(Email),
-            Message VARCHAR(500) NOT NULL
-            )";
+    ///--------------------------------------------------------
+    ///                 CREATE DEFAULT BOOKS
+    ///--------------------------------------------------------
 
-            if ($conn->query($create_blog_sql) === TRUE){
-                echo "Table BlogPosts created successfully";
-            }
-            else{
-                echo "Error creating table (BlogPosts): " .$conn->error;
-            }
-    }
-
-    function createBooks($conn){
+    function createBooks(){
         $book1 = new Book();
         $book1->BookID = 0;
         $book1->Title = "The Hobbit";
@@ -194,7 +245,7 @@
         The publisher was encouraged by the book's critical and financial success and, therefore, requested a sequel. As Tolkien's work progressed on its successor, The Lord of the Rings, he made retrospective accommodations for it in The Hobbit. These few but significant changes were integrated into the second edition. Further editions followed with minor emendations, including those reflecting Tolkien's changing concept of the world into which Bilbo stumbled.
         
         The work has never been out of print. Its ongoing legacy encompasses many adaptations for stage, screen, radio, board games, and video games. Several of these adaptations have received critical recognition on their own merits. ";
-        insertBook($book1, $conn);
+        insertBook($book1);
 
         $book2 = new Book();
         $book2->BookID = 1;
@@ -206,7 +257,7 @@
         $book2->StockCount = 30;
         $book2->Description = "The Fellowship of the Ring is the first of three volumes of the epic novel[2] The Lord of the Rings by the English author J. R. R. Tolkien. It is followed by The Two Towers and The Return of the King. It takes place in the fictional universe of Middle-earth, and was originally published on 29 July 1954 in the United Kingdom.
         The volume consists of a foreword, in which the author discusses his writing of The Lord of the Rings, a prologue titled \"Concerning Hobbits, and other matters\", and the main narrative in Book I and Book II.";
-        insertBook($book2, $conn);
+        insertBook($book2);
 
         $book3 = new Book();
         $book3->BookID = 2;
@@ -217,7 +268,7 @@
         $book3->ImagePath = "img/the_two_towers.png";
         $book3->StockCount = 30;
         $book3->Description = "The Two Towers is the second volume of J. R. R. Tolkien's high fantasy novel The Lord of the Rings. It is preceded by The Fellowship of the Ring and followed by The Return of the King.";
-        insertBook($book3, $conn);
+        insertBook($book3);
 
         $book4 = new Book();
         $book4->BookID = 3;
@@ -228,7 +279,7 @@
         $book4->ImagePath = "img/the_return_of_the_king.png";
         $book4->StockCount = 30;
         $book4->Description = "The Return of the King is the third and final volume of J. R. R. Tolkien's The Lord of the Rings, following The Fellowship of the Ring and The Two Towers. It was published in 1955. The story begins in the kingdom of Gondor, which is soon to be attacked by the Dark Lord Sauron.";
-        insertBook($book4, $conn);
+        insertBook($book4);
 
         $book5 = new Book();
         $book5->BookID = 4;
@@ -247,7 +298,7 @@
         Because J. R. R. Tolkien died leaving his legendarium unedited, Christopher Tolkien selected and edited materials to tell the story from start to end. In a few cases, this meant that he had to devise completely new material, within the tenor of his father's thought, to resolve gaps and inconsistencies in the narrative,[3] particularly Chapter 22, \"Of the Ruin of Doriath\".[4]
         
         The Silmarillion received a generally poor reception on publication; it sold much less well than The Lord of the Rings. Scholars found the work problematic, not least because the book is a construction, not authorised by Tolkien himself,[5] from the large corpus of documents and drafts also called \"The Silmarillion\". Scholars have noted that Tolkien intended the work to be a mythology, penned by many hands, and redacted by a fictional editor, whether Ælfwine or Bilbo Baggins. As such, the scholar Gergely Nagy considers that the fact that the work has indeed been edited actually realises Tolkien's intention.";
-        insertBook($book5, $conn);
+        insertBook($book5);
 
         $book6 = new Book();
         $book6->BookID = 5;
@@ -258,7 +309,7 @@
         $book6->ImagePath = "img/unfinished_tales_of_numenor_middle_earth.jpg";
         $book6->StockCount = 30;
         $book6->Description = "Unfinished Tales of Númenor and Middle-earth is a collection of stories and essays by J. R. R. Tolkien that were never completed during his lifetime, but were edited by his son Christopher Tolkien and published in 1980. Many of the tales within are retold in The Silmarillion, albeit in modified forms; the work also contains a summary of the events of The Lord of the Rings told from a less personal perspective.";
-        insertBook($book6, $conn);
+        insertBook($book6);
 
         $book7 = new Book();
         $book7->BookID = 6;
@@ -269,7 +320,7 @@
         $book7->ImagePath = "img/fall_of_numenor.jpg";
         $book7->StockCount = 30;
         $book7->Description = "The Fall of Númenor is a fantasy work collecting all J. R. R. Tolkien's Second Age writings together. It is edited by Brian Sibley. The book uses \"The Tale of Years\" in the Appendices of The Lord of the Rings to present the content of the Second Age. The stories include the foundation of Númenor, the forging of the Rings of Power, and the Last Alliance against Sauron that ended the Second Age. The editor, Brian Sibley, has provided new introductions and commentaries to unify Tolkien's writings. The publication contains ten new colour paintings by Alan Lee. The book published on 15 November 2022.";
-        insertBook($book7, $conn);
+        insertBook($book7);
 
         $book8 = new Book();
         $book8->BookID = 7;
@@ -280,7 +331,7 @@
         $book8->ImagePath = "img/harry_potter_philosophers_stone.png";
         $book8->StockCount = 30;
         $book8->Description = "Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, Ron Weasley and Hermione Granger, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old.";
-        insertBook($book8, $conn);
+        insertBook($book8);
 
         $book9 = new Book();
         $book9->BookID = 8;
@@ -291,7 +342,7 @@
         $book9->ImagePath = "img/harry_potter_chamber_of_secrets.png";
         $book9->StockCount = 30;
         $book9->Description = "Harry Potter and the Chamber of Secrets is a fantasy novel written by British author J. K. Rowling and the second novel in the Harry Potter series. The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the \"Chamber of Secrets\" has been opened and that the \"heir of Slytherin\" would kill all pupils who do not come from all-magical families. These threats are found after attacks that leave residents of the school petrified. Throughout the year, Harry and his friends Ron and Hermione investigate the attacks.";
-        insertBook($book9, $conn);
+        insertBook($book9);
 
         $book10 = new Book();
         $book10->BookID = 9;
@@ -302,7 +353,7 @@
         $book10->ImagePath = "img/harry_potter_prisoner_of_azkaban.png";
         $book10->StockCount = 30;
         $book10->Description = "Harry Potter and the Prisoner of Azkaban is a fantasy novel written by British author J. K. Rowling and is the third in the Harry Potter series. The book follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry. Along with friends Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, an escaped prisoner from Azkaban, the wizard prison, believed to be one of Lord Voldemort's old allies.";
-        insertBook($book10, $conn);
+        insertBook($book10);
 
         $book11 = new Book();
         $book11->BookID = 10;
@@ -313,7 +364,7 @@
         $book11->ImagePath = "img/harry_potter_goblet_of_fire.png";
         $book11->StockCount = 30;
         $book11->Description = "Harry Potter and the Goblet of Fire is a fantasy novel written by British author J. K. Rowling and the fourth novel in the Harry Potter series. It follows Harry Potter, a wizard in his fourth year at Hogwarts School of Witchcraft and Wizardry, and the mystery surrounding the entry of Harry's name into the Triwizard Tournament, in which he is forced to compete. The book was published in the United Kingdom by Bloomsbury and in the United States by Scholastic. In both countries, the release date was 8 July 2000. This was the first time a book in the series was published in both countries at the same time. The novel won a Hugo Award, the only Harry Potter novel to do so, in 2001. The book was adapted into a film, released worldwide on 18 November 2005, and a video game by Electronic Arts.";
-        insertBook($book11, $conn);
+        insertBook($book11);
 
         $book12 = new Book();
         $book12->BookID = 11;
@@ -324,7 +375,7 @@
         $book12->ImagePath = "img/harry_potter_order_of_the_phoenix.png";
         $book12->StockCount = 30;
         $book12->Description = "";
-        insertBook($book12, $conn);
+        insertBook($book12);
 
         $book13 = new Book();
         $book13->BookID = 12;
@@ -335,7 +386,7 @@
         $book13->ImagePath = "img/harry_potter_order_of_the_phoenix.png";
         $book13->StockCount = 30;
         $book13->Description = "Harry Potter and the Order of the Phoenix is a fantasy novel written by British author J. K. Rowling and the fifth novel in the Harry Potter series. It follows Harry Potter's struggles through his fifth year at Hogwarts School of Witchcraft and Wizardry, including the surreptitious return of the antagonist Lord Voldemort, O.W.L. exams, and an obstructive Ministry of Magic. The novel was published on 21 June 2003 by Bloomsbury in the United Kingdom, Scholastic in the United States, and Raincoast in Canada. It sold five million copies in the first 24 hours of publication.[1] Harry Potter and the Order of the Phoenix won several awards, including the American Library Association Best Book Award for Young Adults in 2003. The book was also made into a 2007 film, and a video game by Electronic Arts.";
-        insertBook($book13, $conn);
+        insertBook($book13);
 
         $book14 = new Book();
         $book14->BookID = 13;
@@ -346,7 +397,7 @@
         $book14->ImagePath = "img/harry_potter_and_the_deathly_hallows.jpg";
         $book14->StockCount = 30;
         $book14->Description = "Harry Potter and the Deathly Hallows is a fantasy novel written by British author J. K. Rowling and the seventh and final novel of the main Harry Potter series. It was released on 21 July 2007 in the United Kingdom by Bloomsbury Publishing, in the United States by Scholastic, and in Canada by Raincoast Books. The novel chronicles the events directly following Harry Potter and the Half-Blood Prince (2005) and the final confrontation between the wizards Harry Potter and Lord Voldemort.";
-        insertBook($book14, $conn);
+        insertBook($book14);
 
         $book15 = new Book();
         $book15->BookID = 14;
@@ -357,7 +408,7 @@
         $book15->ImagePath = "img/the_hunger_games.jpg";
         $book15->StockCount = 30;
         $book15->Description = "The Hunger Games is a 2008 dystopian novel by the American writer Suzanne Collins. It is written in the perspective of 16-year-old Katniss Everdeen, who lives in the future, post-apocalyptic nation of Panem in North America. The Capitol, a highly advanced metropolis, exercises political control over the rest of the nation. The Hunger Games is an annual event in which one boy and one girl aged 12–18 from each of the twelve districts surrounding the Capitol are selected by lottery to compete in a televised battle royale to the death.";
-        insertBook($book15, $conn);
+        insertBook($book15);
 
         $book16 = new Book();
         $book16->BookID = 15;
@@ -368,7 +419,7 @@
         $book16->ImagePath = "img/the_hunger_games_catching_fire.jpg";
         $book16->StockCount = 30;
         $book16->Description = "Catching Fire is a 2009 science fiction young adult novel by the American novelist Suzanne Collins, the second book in The Hunger Games series. As the sequel to the 2008 bestseller The Hunger Games, it continues the story of Katniss Everdeen and the post-apocalyptic nation of Panem. Following the events of the previous novel, a rebellion against the oppressive Capitol has begun, and Katniss and fellow tribute Peeta Mellark are forced to return to the arena in a special edition of the Hunger Games.";
-        insertBook($book16, $conn);
+        insertBook($book16);
 
         $book17 = new Book();
         $book17->BookID = 16;
@@ -379,7 +430,7 @@
         $book17->ImagePath = "img/the_hunger_games_mockingjay.jpg";
         $book17->StockCount = 30;
         $book17->Description = "Mockingjay is a 2010 science fiction novel by American author Suzanne Collins. It is chronologically the last installment of The Hunger Games series, following 2008's The Hunger Games and 2009's Catching Fire. The book continues the story of Katniss Everdeen, who agrees to unify the districts of Panem in a rebellion against the tyrannical Capitol.";
-        insertBook($book17, $conn);
+        insertBook($book17);
 
         $book18 = new Book();
         $book18->BookID = 17;
@@ -390,7 +441,7 @@
         $book18->ImagePath = "img/ballad_of_songbirds_and_snakes.jpg";
         $book18->StockCount = 30;
         $book18->Description = "The Ballad of Songbirds and Snakes is a dystopian action-adventure novel by American author Suzanne Collins. It is a spin-off and a prequel to The Hunger Games trilogy. It was released on May 19, 2020, by Scholastic. An audiobook of the novel read by American actor Santino Fontana was released simultaneously with the printed edition.[1] The book received a virtual launch due to the COVID-19 pandemic.[2] A film adaptation from Lionsgate is set to be released on November 17, 2023.";
-        insertBook($book18, $conn);
+        insertBook($book18);
 
         $book19 = new Book();
         $book19->BookID = 18;
@@ -401,7 +452,7 @@
         $book19->ImagePath = "img/a_game_of_thrones.jpg";
         $book19->StockCount = 30;
         $book19->Description = "The first volume in the A Song of Ice and Fire series – unquestionably one of the greatest fantasy epics of all time. Here, we are introduced to the Seven Kingdoms of Westeros, and the major players with eyes on its Iron Throne. As noble families battle for power, greater threats face them all: for winter is coming to Westeros, and here, winter can last a lifetime.";
-        insertBook($book19, $conn);
+        insertBook($book19);
 
         $book20 = new Book();
         $book20->BookID = 19;
@@ -414,7 +465,7 @@
         $book20->Description = "From the ancient citadel of Dragonstone to the forbidding lands of Winterfell, chaos reigns as pretenders to the Iron Throne of the Seven Kingdoms stake their claims through tempest, turmoil and war.
 
         As a prophecy of doom cuts across the sky - a comet the colour of blood and flame - five factions struggle for control of a divided land. Brother plots against brother and the dead rise to walk in the night.";
-        insertBook($book20, $conn);
+        insertBook($book20);
 
         $book21 = new Book();
         $book21->BookID = 20;
@@ -429,7 +480,7 @@
         The Seven Kingdoms are divided by revolt and blood feud. In the northern wastes, a horde of hungry, savage people steeped in the dark magic of the wilderness is poised to invade the Kingdom of the North where Robb Stark wears his new-forged crown. And Robb's defences are ranged against the South, the land of the cunning and cruel Lannisters, who have his younger sisters in their power.
         
         Throughout Westeros, the war for the Iron Throne rages more fiercely than ever, but if the Wall is breached, no king will live to claim it.";
-        insertBook($book21, $conn);
+        insertBook($book21);
 
         $book22 = new Book();
         $book22->BookID = 21;
@@ -444,7 +495,7 @@
         Robb Stark may be King in the North, but he must bend to the will of the old tyrant Walder Frey if he is to hold his crown. And while his youngest sister, Arya, has escaped the clutches of the depraved Cersei Lannister and her son, the capricious boy-king Joffrey, Sansa Stark remains their captive.
         
         Meanwhile, across the ocean, Daenerys Stormborn, the last heir of the Dragon King, delivers death to the slave-trading cities of Astapor and Yunkai as she approaches Westeros with vengeance in her heart.";
-        insertBook($book22, $conn);
+        insertBook($book22);
 
         $book23 = new Book();
         $book23->BookID = 22;
@@ -459,7 +510,7 @@
         The war in the Seven Kingdoms has burned itself out, but in its bitter aftermath new conflicts spark to life. The Martells of Dorne and the Starks of Winterfell seek vengeance for their dead. Euron Crow's Eye, as black a pirate as ever raised a sail, returns from the smoking ruins of Valyria to claim the Iron Isles.
         
         From the icy north, where Others threaten the Wall, apprentice Maester Samwell Tarly brings a mysterious babe in arms to the Citadel. As plots, intrigue and battle threaten to engulf Westeros, victory will go to the men and women possessed of the coldest steel and the coldest hearts.";
-        insertBook($book23, $conn);
+        insertBook($book23);
 
         $book24 = new Book();
         $book24->BookID = 23;
@@ -474,7 +525,7 @@
         Tyrion Lannister, having killed his father, and wrongfully accused of killing his nephew, King Joffrey, has escaped from King's Landing with a price on his head.
         
         To the north lies the great Wall of ice and stone - a structure only as strong as those guarding it. Eddard Stark's son Jon Snow has been elected 998th Lord Commander of the Night's Watch. But Jon has enemies both inside and beyond the Wall. And in the east Daenerys Targaryen struggles to hold a city built on dreams and dust.";
-        insertBook($book24, $conn);
+        insertBook($book24);
 
         $book25 = new Book();
         $book25->BookID = 24;
@@ -489,7 +540,7 @@
         In King's Landing the Queen Regent, Cersei Lannister, awaits trial, abandoned by all those she trusted; while in the eastern city of Yunkai her brother Tyrion has been sold as a slave. From the Wall, having left his wife and the Red Priestess Melisandre under the protection of Jon Snow, Stannis Baratheon marches south to confront the Boltons at Winterfell. But beyond the Wall the wildling armies are massing for an assault...
         
         On all sides bitter conflicts are reigniting, played out by a grand cast of outlaws and priests, soldiers and skinchangers, nobles and slaves. The tides of destiny will inevitably lead to the greatest dance of all.";
-        insertBook($book25, $conn);
+        insertBook($book25);
 
         $book26 = new Book();
         $book26->BookID = 24;
@@ -506,10 +557,14 @@
         The protagonist, Winston Smith, is a diligent mid-level worker at the Ministry of Truth who secretly hates the Party and dreams of rebellion. He keeps a forbidden diary and begins a relationship with his colleague Julia, and they learn about a shadowy resistance group called the Brotherhood. However, their contact with the Brotherhood turns out to be a Party agent, and Smith is arrested. He is subjected to months of psychological manipulation and torture by the Ministry of Love and is released once he has come to love Big Brother.
         
         Nineteen Eighty-Four has become a classic literary example of political and dystopian fiction. It also popularised the term \"Orwellian\" as an adjective, with many terms used in the novel entering common usage, including \"Big Brother\", \"doublethink\", \"Thought Police\", \"thoughtcrime\", \"Newspeak\", and \"2 + 2 = 5\". Parallels have been drawn between the novel's subject matter and real life instances of totalitarianism, mass surveillance, and violations of freedom of expression among other themes.[6][7][8] Orwell described his book as a \"satire,\"[9] and a display of the \"perversions to which a centralised economy is liable,\" while also stating he believed \"that something resembling it could arrive.\"[9] Time included the novel on its list of the 100 best English-language novels from 1923 to 2005,[10] and it was placed on the Modern Library's 100 Best Novels list, reaching number 13 on the editors' list and number 6 on the readers' list.[11] In 2003, it was listed at number eight on The Big Read survey by the BBC.[12]";
-        insertBook($book26, $conn);
+        insertBook($book26);
     }
 
-    function createDefaultAdmin($conn)
+    ///--------------------------------------------------------
+    ///                 CREATE DEFAULT ADMIN
+    ///--------------------------------------------------------
+
+    function createDefaultAdmin()
     {            
         $admin = new Admin();
         $admin->Email = "admin@bookstore.co.uk";
@@ -517,7 +572,7 @@
         $admin->FirstName = "Default";
         $admin->Surname = "Admin";
         $admin->DateOfBirth = strtotime("1 January 1999");
-        $admin->HouseNum = 7;
+        $admin->HouseNumber = 7;
         $admin->Street = "Main Road";
         $admin->Town = "Selby";
         $admin->County = "County";
@@ -525,24 +580,18 @@
         $admin->PostCode = "Y08 7PT";
         $admin->Password = password_hash("password", PASSWORD_DEFAULT);
 
-        insertAdmin($admin, $conn);
+        insertAdmin($admin);
     }
+  
+    createDatabase();
+    createBooksTable();
+    createAdminTable();
+    createCustomerTable();
+    createOrdersTable();
+    createBookSalesTable();
+    createCartTable();
 
-    $conn = openConnection();
-    
-    createDatabase($conn);
-    createBooksTable($conn);
-    createAdminTable($conn);
-    createCustomerTable($conn);
-    createOrdersTable($conn);
-    createBookSalesTable($conn);
-    createCartTable($conn);
-    //createBlogPostTable($conn);
-
-    createBooks($conn);
-    createDefaultAdmin($conn);
-
-    //close connection to database
-    $conn->close();
+    createBooks();
+    createDefaultAdmin();
     
 ?>

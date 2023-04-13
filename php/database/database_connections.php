@@ -3,6 +3,10 @@
     require_once "book.php";
     require_once "order.php";
 
+    ///--------------------------------------------------------
+    ///           OPEN CONNECTION TO MYSQL DATABASE
+    ///--------------------------------------------------------
+    
     function openConnection()
     {
         $servername = "localhost";
@@ -21,14 +25,34 @@
         return $conn;
     }
 
+    ///--------------------------------------------------------
+    ///             INSERT BOOK INTO DATABASE
+    ///--------------------------------------------------------
+
     function insertBook($book)
     {
         $conn = openConnection();
 
-        $stmt = $conn->prepare("INSERT INTO Bookstore.Books(Title, Author, BookDescription, Genre, Price, StockCount, ImagePath)
-        VALUES(?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare(
+        "INSERT INTO Bookstore.Books(
+            Title,
+            Author,
+            BookDescription,
+            Genre,
+            Price,
+            StockCount,
+            ImagePath)
+        VALUES(?, ?, ?, ?, ?, ?, ?)"
+        );
         
-        $stmt->bind_param("ssssdis", $book->Title, $book->Author, $book->Description, $book->Genre, $book->Price, $book->StockCount, $book->ImagePath);
+        $stmt->bind_param("ssssdis", 
+            $book->Title,
+            $book->Author,
+            $book->Description,
+            $book->Genre,
+            $book->Price,
+            $book->StockCount,
+            $book->ImagePath);
 
         if ($stmt->execute() === TRUE){
             echo $book->Title. " inserted <br>";
@@ -40,65 +64,153 @@
         $conn->close();
     }
 
-    function insertAdmin($admin, $conn)
-    {
-        $sql = 
-            "
-            INSERT INTO Bookstore.Administrators(Email, Title, FirstName, Surname, DateOfBirth, HouseNumber, Street, Town, County, Country, PostCode, Password)
-            VALUES ('$admin->Email', '$admin->Title', '$admin->FirstName', '$admin->Surname', '$admin->DateOfBirth', '$admin->HouseNumber', '$admin->Street', '$admin->Town', '$admin->County', '$admin->Country', '$admin->PostCode', '$admin->Password')
-            ";
+    ///--------------------------------------------------------
+    ///             INSERT ADMIN INTO DATABASE
+    ///--------------------------------------------------------
 
-        if ($conn->query($sql) === TRUE)
-            echo "Default admin created successfully";
-        else
-            echo "Default admin could not be created: " . $conn->error;
+    function insertAdmin($admin)
+    {
+        $conn = openConnection();
+
+        $stmt = $conn->prepare(
+            "INSERT INTO Bookstore.Administrators(
+                Email,
+                Title,
+                FirstName,
+                Surname,
+                DateOfBirth,
+                HouseNumber,
+                Street,
+                Town,
+                County,
+                Country,
+                PostCode,
+                Password
+                )
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+
+        $stmt->bind_param("ssssssssssss",
+            $admin->Email,
+            $admin->Title,
+            $admin->FirstName,
+            $admin->Surname,
+            $admin->DateOfBirth,
+            $admin->HouseNumber,
+            $admin->Street,
+            $admin->Town,
+            $admin->County,
+            $admin->Country,
+            $admin->PostCode,
+            $admin->Password
+        );
+
+        if ($stmt->execute() === TRUE){
+            echo $admin->Email . " created successfully.<br>";
+        }
+        else{
+            echo "Data could not be inserted: " . $conn->error;
+        }
+
+        $conn->close();
     }
 
+    ///--------------------------------------------------------
+    ///            INSERT CUSTOMER INTO DATABASE
+    ///--------------------------------------------------------
+    
     function insertCustomer($customer)
     {
         $conn = openConnection();
 
-        $sql = 
-        "
-            INSERT INTO Bookstore.Customers(Email, Title, FirstName, Surname, DateOfBirth, HouseNumber, Street, Town, County, Country, PostCode, Password)
-            VALUES (
-                '$customer->Email',
-                '$customer->Title',
-                '$customer->FirstName',
-                '$customer->Surname',
-                '$customer->DateOfBirth',
-                '$customer->HouseNumber',
-                '$customer->Street',
-                '$customer->Town',
-                '$customer->County',
-                '$customer->Country',
-                '$customer->PostCode',
-                '$customer->Password');
-        ";
+        $stmt = $conn->prepare(
+            "INSERT INTO Bookstore.Customers(
+                Email,
+                Title,
+                FirstName,
+                Surname,
+                DateOfBirth,
+                HouseNumber,
+                Street,
+                Town,
+                County,
+                Country,
+                PostCode,
+                Password
+                )
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
 
-        if ($conn->query($sql) === TRUE)
-                return "Customer created successfully";
-        else
-                return "Customer could not be created: " . $conn->error;
+        $stmt->bind_param("ssssssssssss",
+            $customer->Email,
+            $customer->Title,
+            $customer->FirstName,
+            $customer->Surname,
+            $customer->DateOfBirth,
+            $customer->HouseNumber,
+            $customer->Street,
+            $customer->Town,
+            $customer->County,
+            $customer->Country,
+            $customer->PostCode,
+            $customer->Password
+        );
+
+        if ($stmt->execute() === TRUE){
+            echo $customer->Email . " created successfully.<br>";
+        }
+        else{
+            echo "Data could not be inserted: " . $conn->error;
+        }
 
         $conn->close();
     }
 
+    ///--------------------------------------------------------
+    ///                   INSERT ORDER
+    ///--------------------------------------------------------
     function insertOrder($order)
     {
         $conn = openConnection();
 
-        $sql = 
-        "
-        INSERT INTO Bookstore.Orders(AccountEmail, Total, Date, OrderEmail, HouseNumber, Street, County, Country, PostCode)
-        VALUES ('$order->AccountEmail', $order->Total, '$order->Date', '$order->OrderEmail', '$order->HouseNumber', '$order->Street', '$order->County', '$order->Country', '$order->PostCode')
-        ";
+        $stmt = $conn->prepare(
+            "INSERT INTO Bookstore.Orders(
+                AccountEmail,
+                Total,
+                Date,
+                OrderEmail,
+                HouseNumber,
+                Street,
+                County,
+                Country,
+                PostCode
+                )
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
 
-        if ($conn->query($sql) !== TRUE)
+        $stmt->bind_param("sssssssss",
+            $order->AccountEmail,
+            $order->Total,
+            $order->Date,
+            $order->OrderEmail,
+            $order->HouseNumber,
+            $order->Street,
+            $order->County,
+            $order->Country,
+            $order->PostCode
+        );
+
+        if ($stmt->execute() !== TRUE)
+        {
             echo "Could not create order: " .$conn->error;
+        }
 
         $conn->close();
     }
+
+    ///--------------------------------------------------------
+    ///             INSERT BOOKSALE INTO DATABASE
+    ///--------------------------------------------------------
 
     function insertBookSales($orderID, $bookSales)
     {
@@ -120,6 +232,10 @@
 
         $conn->close();
     }
+
+    ///--------------------------------------------------------
+    ///           DECREMENT BOOK STOCK COUNT
+    ///--------------------------------------------------------
 
     function reduceOrderStockCount($bookSales)
     {
@@ -145,29 +261,11 @@
         $conn->close();
     }
 
-    function reduceIndividualStockCount($book)
-    {
-        echo "reducing stock count";
-        $conn = openConnection();
+    ///--------------------------------------------------------
+    ///                INCREASE STOCK COUNT
+    ///--------------------------------------------------------
 
-        $newStockCount = $book->StockCount-1;
-
-        $sql = "
-        UPDATE Bookstore.Books
-        SET StockCount = (?)
-        WHERE BookID = (?)        
-        ";
-
-        $query = $conn->prepare($sql);
-        $query->bind_param("ii", $newStockCount, $book->BookID);
-
-        if ($query->execute() === FALSE)
-            echo "Could not reduce stock count: " .$conn->error;
-
-        $conn->close();
-    }
-
-    function increaseIndividualStockCount($book)
+    function increaseStockCount($book)
     {
         $conn = openConnection();
 
@@ -188,28 +286,49 @@
         $conn->close();
     }
 
+    ///--------------------------------------------------------
+    ///             UPDATE CUSTOMER DETAILS
+    ///--------------------------------------------------------
+
     function updateCustomerDetails($customer)
     {
         $conn = openConnection();
 
-        $sql = "
-        UPDATE Bookstore.Customers
-        SET
-            Title = '$customer->Title',
-            FirstName = '$customer->FirstName',
-            Surname = '$customer->Surname',
-            DateOfBirth = '$customer->DateOfBirth',
-            HouseNumber = '$customer->HouseNumber',
-            Street = '$customer->Street',
-            Town = '$customer->Town',
-            County = '$customer->County',
-            Country = '$customer->Country',
-            PostCode = '$customer->PostCode' 
-        WHERE Email = '$customer->Email'";
+        $stmt = $conn->prepare("
+            UPDATE Bookstore.Customers
+            SET
+                Title = (?),
+                FirstName = (?),
+                Surname = (?),
+                DateOfBirth = (?),
+                HouseNumber = (?),
+                Street = (?),
+                Town = (?),
+                County = (?),
+                Country = (?),
+                PostCode = (?),
+                Password = (?)
+            WHERE Email = (?)"
+            );
 
-        if ($conn->query($sql) !== TRUE)
+        $stmt->bind_param("ssssssssssss",
+            $customer->Title,
+            $customer->FirstName,
+            $customer->Surname,
+            $customer->DateOfBirth,
+            $customer->HouseNumber,
+            $customer->Street,
+            $customer->Town,
+            $customer->County,
+            $customer->Country,
+            $customer->PostCode,
+            $customer->Password,
+            $customer->Email
+        );
+
+        if ($stmt->execute() !== TRUE)
         {
-            die("Error updating customer: " . $conn->error);
+            die ("Error updating customer: " . $conn->error);
             return false;
         }
         
@@ -217,28 +336,41 @@
         return true;
     }
 
+    ///--------------------------------------------------------
+    ///             UPDATE CUSTOMER PASSWORD
+    ///--------------------------------------------------------
+    
     function updateCustomerPassword($customer, $newPassword)
     {
         $conn = openConnection();
 
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-        $sql = "
-        UPDATE Bookstore.Customers
-        SET
-            Password = '$hashedPassword'
-        WHERE Email = '$customer->Email'
-        ";
+        $stmt = $conn->prepare("
+            UPDATE Bookstore.Customers
+            SET
+                Password = (?)
+            WHERE Email = (?)"
+            );
 
-        if ($conn->query($sql) !== TRUE)
+        $stmt->bind_param("ss",
+            $hashedPassword,
+            $customer->Email
+        );
+
+        if ($stmt->execute() !== TRUE)
         {
-            die ("Error updating password: " . $conn->error);
+            die ("Error updating customer: " . $conn->error);
             return false;
         }
 
         $conn->close();
         return true;
     }
+
+    ///--------------------------------------------------------
+    ///                     CLEAR CART
+    ///--------------------------------------------------------
 
     function clearCart($email)
     {
@@ -254,6 +386,10 @@
 
         $conn->close();
     }
+
+    ///--------------------------------------------------------
+    ///             GET MOST RECENT ORDER
+    ///--------------------------------------------------------
 
     function getMostRecentOrderID()
     {
@@ -280,6 +416,10 @@
 
         return $orderID;
     }
+
+    ///--------------------------------------------------------
+    ///             GET ORDERS FROM EMAIL
+    ///--------------------------------------------------------
 
     function getOrdersFromEmail($email)
     {
@@ -311,6 +451,10 @@
         return $orders;
     }
 
+    ///--------------------------------------------------------
+    ///            GET BOOK INFORMATION FROM ID
+    ///--------------------------------------------------------
+
     function getBookById($bookID)
     {
         $conn = openConnection();
@@ -340,6 +484,10 @@
         return null;
     }
 
+    ///--------------------------------------------------------
+    ///             GET BOOKID FROM CARTID
+    ///--------------------------------------------------------
+
     function getBookByCartID($cartID)
     {
         $conn = openConnection();
@@ -358,6 +506,10 @@
 
         return null;
     }
+
+    ///--------------------------------------------------------
+    ///          GET ADMIN INFO FROM LOGIN DETAILS
+    ///--------------------------------------------------------
 
     function getAdminFromDetails($email, $password)
     {
@@ -396,6 +548,10 @@
         return null;
     }
 
+    ///--------------------------------------------------------
+    ///         GET CUSTOMER INFO FROM LOGIN DETAILS
+    ///--------------------------------------------------------
+
     function getCustomerFromDetails($email, $password)
     {
         $conn = openConnection();
@@ -432,6 +588,10 @@
         return null;
     }
 
+    ///--------------------------------------------------------
+    ///             GET ALL BOOKS IN DATABASE
+    ///--------------------------------------------------------
+
     function getBooks()
     {
         $conn = openConnection();
@@ -463,6 +623,10 @@
         return $books;
     }
 
+    ///--------------------------------------------------------
+    ///                 ADD A BOOK TO CART
+    ///--------------------------------------------------------
+
     function addBookToCart($email, $bookID)
     {
         $conn = openConnection();
@@ -478,6 +642,10 @@
 
         $conn->close();
     }
+
+    ///--------------------------------------------------------
+    ///            GET BOOKS IN CUSTOMERS CART
+    ///--------------------------------------------------------
 
     function getBooksInCart($email)
     {
@@ -527,6 +695,10 @@
         return $books;
     }
 
+    ///--------------------------------------------------------
+    ///               GET BOOKS IN AN ORDER
+    ///--------------------------------------------------------
+
     function getBooksFromOrder($orderId)
     {
         $books = array();
@@ -569,6 +741,10 @@
         return $books;
     }
 
+    ///--------------------------------------------------------
+    ///                 REMOVE BOOK FROM CART
+    ///--------------------------------------------------------
+
     function removeBookFromCart($cartID)
     {
         $conn = openConnection();
@@ -581,6 +757,10 @@
 
         $conn->close();
     }
+
+    ///--------------------------------------------------------
+    ///             UPDATE BOOK INFORMATION
+    ///--------------------------------------------------------
 
     function updateBook($book)
     {
@@ -617,6 +797,10 @@
         $conn->close();
     }
 
+    ///--------------------------------------------------------
+    ///             REMOVE BOOK FROM BOOK TABLE
+    ///--------------------------------------------------------
+
     function removeBook($bookId)
     {
         $conn = openConnection();
@@ -632,35 +816,6 @@
             echo "Book could not be removed from database: " .$conn->error;     
 
         $conn->close();
-    }
-
-    function createNewCustomer($customer)
-    {
-        $conn = openConnection();
-
-        $sql = "
-        INSERT INTO Bookstore.Customers(Email, Title, FirstName, Surname, DateOfBirth, HouseNumber, Street, Town, County, Country, PostCode, Password)
-        VALUES(
-            '$customer->Email',
-            '$customer->Title',
-            '$customer->FirstName',
-            '$customer->Surname',
-            '$customer->DateOfBirth',
-            '$customer->HouseNumber',
-            '$customer->Street',
-            '$customer->Town',
-            '$customer->County',
-            '$customer->Country',
-            '$customer->PostCode',
-            '$customer->Password'
-        )
-        ";
-
-        if ($conn->query($sql) === TRUE)
-            return true;
-
-        $conn->close();
-        return false;
     }
 
 ?>

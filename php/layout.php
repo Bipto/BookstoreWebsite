@@ -1,6 +1,6 @@
 <?php
     
-    function createHeader(){
+    function createNavigation(){
 
         require_once "database/customer.php";
 

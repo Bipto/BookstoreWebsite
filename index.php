@@ -56,7 +56,7 @@
             $searchText = $_POST["searchtext"];
         }
 
-        createHeader();  
+        createNavigation();  
         createSearchbar($searchText);         
 
         $books = getBooks();

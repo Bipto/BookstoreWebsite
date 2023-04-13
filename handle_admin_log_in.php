@@ -15,7 +15,7 @@
         require_once "php/database/database_connections.php";
         require_once "php/database/administrator.php";
 
-        createHeader();
+        createNavigation();
 
         echo "<div class='content'>";
 

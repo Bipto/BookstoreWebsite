@@ -14,7 +14,7 @@
         require_once "php/database/database_connections.php";
         require_once "php/database/book.php";
         
-        createHeader();
+        createNavigation();
         $id = $_GET["id"];
         $selectedBook = getBookById($id);
         if (is_null($selectedBook))

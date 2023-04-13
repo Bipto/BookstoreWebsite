@@ -15,7 +15,7 @@
         require_once "php/database/database_connections.php";
         require_once "php/database/order.php";
 
-        createHeader();
+        createNavigation();
 
         $email = $_POST["email"];
         $houseNum = $_POST["houseNum"];

@@ -11,7 +11,7 @@
     <body>
         <?php
             require_once "php/layout.php";
-            createHeader();
+            createNavigation();
         ?>
 
         <h4 class="info">

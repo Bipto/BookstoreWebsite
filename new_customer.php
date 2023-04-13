@@ -12,7 +12,7 @@
     <?php
 
         require_once "php/layout.php";
-        createHeader();
+        createNavigation();
     ?>
 
     <div class="title">

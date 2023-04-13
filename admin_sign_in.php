@@ -13,7 +13,7 @@
         require_once "php/layout.php";
         require_once "php/database/customer.php";
 
-        createHeader();
+        createNavigation();
     ?>
 
     <div class='title'>

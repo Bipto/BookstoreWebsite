@@ -14,7 +14,7 @@
         require_once "php/layout.php";
         require_once "php/database/database_connections.php";
 
-        createHeader();
+        createNavigation();
         echo "<h2 class='content'>";
 
         if (!isset($_GET["details_valid"]))

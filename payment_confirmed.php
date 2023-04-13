@@ -16,7 +16,7 @@
         require_once "php/database/database_connections.php";
         require_once "php/database/order.php";
 
-        createHeader();
+        createNavigation();
 
         $cardNum = $_POST["cardNum"];
         $cardName = $_POST["cardName"];

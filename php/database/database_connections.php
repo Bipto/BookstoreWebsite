@@ -156,14 +156,14 @@
             $customer->Password
         );
 
-        if ($stmt->execute() === TRUE){
-            echo $customer->Email . " created successfully.<br>";
-        }
-        else{
+        if ($stmt->execute() !== TRUE){
             echo "Data could not be inserted: " . $conn->error;
+            return false;
         }
 
         $conn->close();
+
+        return true;
     }
 
     ///--------------------------------------------------------

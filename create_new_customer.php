@@ -42,9 +42,10 @@
 
                 $_SESSION["Customer"] = $customer;
                 
-                $text = insertCustomer($customer);
-                if ($text === "Customer created successfully")
+                if (insertCustomer($customer))
+                {
                     header('Location: account.php');
+                }
             }
             else
                 echo "Passwords do not match!";

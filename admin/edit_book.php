@@ -14,7 +14,7 @@
 
         $html = 
         "
-        <form action='admin_dashboard.php?action=updated&id=$id' method='post' class='form'>
+        <form class='form'>
             <h2>Edit Book</h2>
 
             <img src='$book->ImagePath' class='image'><br>
@@ -32,13 +32,13 @@
             <input type='text' id='genre' name='genre' class='entry' value='$genre'><br>
 
             <label for='price' type='text' class='label'>Price:</label><br>
-            <input type='number' min='0.1' step='any' name='price' class='entry' value='$book->Price'/><br>
+            <input type='number' min='0.1' step='any' id='price' name='price' class='entry' value='$book->Price'/><br>
 
             <label for='path' type='text' class='path'>Image Path:</label><br>
-            <input type='text' id='path' name='path' class='entry' value='$book->ImagePath'><br><br>
+            <input type='text' id='path' name='path' id='path' class='entry' value='$book->ImagePath'><br><br>
 
             <button type='button' class='deleteButton' onclick='removeBookFromDatabase($book->BookID)'>Delete</button>
-            <input type='submit' value='Update' class='submitButton'>
+            <button type='button' class='submitButton' onclick='updateBookInfo($id)'>Update</button>
 
             <br><br>
         </form>

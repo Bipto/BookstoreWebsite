@@ -1,33 +1,3 @@
-//index page
-function searchBooksHome(searchText)
-{
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function(){
-        document.body.innerHTML = this.responseText;
-
-    }
-    
-    const filePath = 'index.php?name=' + searchText;
-
-    xhttp.open("GET", filePath);
-    xhttp.send();
-}
-
-function searchBooksAdmin()
-{
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function(){
-        document.body.innerHTML = this.responseText;
-
-    }
-    
-    const searchText = document.getElementById("searchtext").value;
-    const filePath = 'admin_dashboard.php?action=manage&name=' + searchText;
-
-    xhttp.open("GET", filePath, false);
-    xhttp.send();
-}
-
 //toggle mobile navigation
 function toggleDropdownMenu()
 {
@@ -63,7 +33,6 @@ function removeBookFromCart(id)
     xhttp.onload = function(){
         document.body.innerHTML = this.responseText;
     }
-
     const filepath = 'remove_book_from_cart.php?id=' + id;
     
     xhttp.open("GET", filepath, true);
@@ -73,14 +42,27 @@ function removeBookFromCart(id)
 //payment page
 function paymentBackClick()
 {
-    location.href = "invoice.php";
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+        document.body.innerHTML = this.responseText;
+    }
+    const filepath = "invoice.php";
+    xhttp.open("GET", filepath, true);
+    xhttp.send();
 }
 
+//
 function removeBookFromDatabase(id)
 {   
     var answer = confirm("Are you sure that you wish to do this? This action cannot be undone.");
     if (answer)
     {
-        location.href = "admin_dashboard.php?action=remove&id=" + id;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            document.body.innerHTML = this.responseText;
+        }
+        const filepath = "admin_dashboard.php?action=remove&id=" + id;
+        xhttp.open("GET", filepath, true);
+        xhttp.send();
     }
 }

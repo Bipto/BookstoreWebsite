@@ -63,7 +63,7 @@
 
             <h3>Order Total: £' .number_format((float)$orderTotal, 2, '.', ''). '</h3>
 
-            <button type="button" onclick="paymentBackClick() class="backButton">Back</button>
+            <button type="button" onclick="paymentBackClick()" class="backButton">Back</button>
             <input type="submit" value="Submit" class="submitButton">
         </form>
         

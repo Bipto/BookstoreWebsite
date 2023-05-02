@@ -14,7 +14,7 @@
 
         $html = 
         "
-        <form class='form'>
+        <form action='admin_dashboard.php?action=updated&id=$id' method='post' class='form'>
             <h2>Edit Book</h2>
 
             <img src='$book->ImagePath' class='image'><br>
@@ -38,8 +38,7 @@
             <input type='text' id='path' name='path' id='path' class='entry' value='$book->ImagePath'><br><br>
 
             <button type='button' class='deleteButton' onclick='removeBookFromDatabase($book->BookID)'>Delete</button>
-            <button type='button' class='submitButton' onclick='updateBookInfo($id)'>Update</button>
-
+            <input type='submit' value='Update' class='submitButton'>
             <br><br>
         </form>
         ";

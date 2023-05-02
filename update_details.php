@@ -21,60 +21,60 @@
             $customer = $_SESSION["Customer"];
         
             $html = 
-            '
-            <div class="content">
+            "
+            <div class='content'>
                 <h2>Update Details</h2>
-                <form action="update_customer_in_database.php" method="post" class="form">
+                <form action='update_customer_in_database.php' method='post' class='form'>
                 
-                    <label for="title" class="label">Title:</label><br>
-                    <select name="title" id="title" class="entry">
-                        <option value="Mr">Mr</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Mrs">Mrs</option>
+                    <label for='title' class='label'>Title:</label><br>
+                    <select name='title' id='title' class='entry'>
+                        <option value='Mr'>Mr</option>
+                        <option value='Miss'>Miss</option>
+                        <option value='Mrs'>Mrs</option>
                     </select>
                     <br><br>
 
-                    <label for="fname" class="label">First Name:</label><br>
-                    <input type="text" id="fname" name="fname" class="entry" value='.$customer->FirstName.'>
+                    <label for='fname' class='label'>First Name:</label><br>
+                    <input type='text' id='fname' name='fname' class='entry' value='$customer->FirstName'>
                     <br><br>
 
-                    <label for="sname" class="label">Surname:</label><br>
-                    <input type="text" id="sname" name="sname" class="entry" value='.$customer->Surname.'>
+                    <label for='sname' class='label'>Surname:</label><br>
+                    <input type='text' id='sname' name='sname' class='entry' value='$customer->Surname'>
                     <br><br>
 
-                    <label for="dob" class="label">Data of Birth:</label><br>
-                    <input type="date" id="dob" name="dob" class="entry" value='.$customer->DateOfBirth.'>
+                    <label for='dob' class='label'>Date of Birth:</label><br>
+                    <input type='date' id='dob' name='dob' class='entry' value=".$customer->DateOfBirth.">
                     <br><br>
 
-                    <label for="houseNum" class="label">House Number:</label><br>
-                    <input type="text" id="houseNum" name="houseNum" class="entry" value='.$customer->HouseNumber.'>
+                    <label for='houseNum' class='label'>House Number:</label><br>
+                    <input type='text' id='houseNum' name='houseNum' class='entry' value='$customer->HouseNumber'>
                     <br><br>
 
-                    <label for="street" class="label">Street:</label><br>
-                    <input type="text" id="street" name="street" class="entry" value='.$customer->Street.'>
+                    <label for='street' class='label'>Street:</label><br>
+                    <input type='text' id='street' name='street' class='entry' value='$customer->Street'>
                     <br><br>
 
-                    <label for="town" class="label">Town:</label><br>
-                    <input type="text" id="town" name="town" class="entry" value='.$customer->Town.'>
+                    <label for='town' class='label'>Town:</label><br>
+                    <input type='text' id='town' name='town' class='entry' value='$customer->Town'>
                     <br><br>
 
-                    <label for="county" class="label">County:</label><br>
-                    <input type="text" id="county" name="county" class="entry" value='.$customer->County.'>
+                    <label for='county' class='label'>County:</label><br>
+                    <input type='text' id='county' name='county' class='entry' value='$customer->County'>
                     <br><br>
 
-                    <label for="country" class="label">Country:</label><br>
-                    <input type="text" id="country" name="country" class="entry" value='.$customer->Country.'>
+                    <label for='country' class='label'>Country:</label><br>
+                    <input type='text' id='country' name='country' class='entry' value='$customer->Country'>
                     <br><br>
 
-                    <label for="postCode" class="label">Post Code:</label><br>
-                    <input type="text" id="postCode" name="postCode" class="entry" value='.$customer->PostCode.'>
+                    <label for='postCode' class='label'>Post Code:</label><br>
+                    <input type='text' id='postCode' name='postCode' class='entry' value='$customer->PostCode'>
                     <br><br>
                     
-                    <input type="submit" value="Submit" class="button">
+                    <input type='submit' value='Submit' class='button'>
 
                     <br><br>
                 </form>
-            </div>';
+            </div>";
             echo $html;
         }
 
